@@ -7,34 +7,34 @@ type Props = {
 }
 export default function GameFieldElement(props: Props) {
     const player1Hand1x = BLOCK_SIZE * 1;
-    const player1Hand1y = BLOCK_SIZE * 17;
+    const player1Hand1y = BLOCK_SIZE * 15;
     const player1Hand2x = BLOCK_SIZE * 4;
-    const player1Hand2y = BLOCK_SIZE * 17;
+    const player1Hand2y = BLOCK_SIZE * 15;
     const player1Hand3x = BLOCK_SIZE * 7;
-    const player1Hand3y = BLOCK_SIZE * 17;
+    const player1Hand3y = BLOCK_SIZE * 15;
 
     const player2Hand1x = BLOCK_SIZE * 1;
-    const player2Hand1y = BLOCK_SIZE * 0;
+    const player2Hand1y = BLOCK_SIZE * 1;
     const player2Hand2x = BLOCK_SIZE * 4;
-    const player2Hand2y = BLOCK_SIZE * 0;
+    const player2Hand2y = BLOCK_SIZE * 1;
     const player2Hand3x = BLOCK_SIZE * 7;
-    const player2Hand3y = BLOCK_SIZE * 0;
+    const player2Hand3y = BLOCK_SIZE * 1;
 
     const player1LeftX = BLOCK_SIZE * 1;
-    const player1LeftY = BLOCK_SIZE * 11;
+    const player1LeftY = BLOCK_SIZE * 10;
     const player1CenterX = BLOCK_SIZE * 4;
-    const player1CenterY = BLOCK_SIZE * 11;
+    const player1CenterY = BLOCK_SIZE * 10;
     const player1RightX = BLOCK_SIZE * 7;
-    const player1RightY = BLOCK_SIZE * 11;
+    const player1RightY = BLOCK_SIZE * 10;
 
     const player2LeftX = BLOCK_SIZE * 1;
-    const player2LeftY = BLOCK_SIZE * 6;
+    const player2LeftY = BLOCK_SIZE * 5;
     const player2CenterX = BLOCK_SIZE * 4;
-    const player2CenterY = BLOCK_SIZE * 6;
+    const player2CenterY = BLOCK_SIZE * 5;
     const player2RightX = BLOCK_SIZE * 7;
-    const player2RightY = BLOCK_SIZE * 6;
+    const player2RightY = BLOCK_SIZE * 5;
 
-    return (<svg width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 21} >
+    return (<svg width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 18} >
         <rect x={0} y={0} width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 21} fill="lightgray" />
         {
             // 手札プレイヤー１手札１
