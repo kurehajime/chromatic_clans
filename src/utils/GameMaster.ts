@@ -8,7 +8,11 @@ export class GameMaster {
         const field2 = GameMaster.InitFiled();
         return new FieldSet(field1, field2);
     }
-
+    public static DummyFieldSet(): FieldSet {
+        const field1 = GameMaster.DummyField();
+        const field2 = GameMaster.DummyField();
+        return new FieldSet(field1, field2);
+    }
 
     public static InitFiled(): Field {
         const deck = GameMaster.Shuffle();
@@ -22,6 +26,29 @@ export class GameMaster {
         const right = [] as Card[];
         return new Field(deck, hand, left, center, right);
     }
+
+    public static DummyField(): Field {
+        const deck = GameMaster.Shuffle();
+        const hand = [
+        ] as Card[];
+        const left = [
+            deck.pop() as Card,
+            deck.pop() as Card,
+            deck.pop() as Card,
+        ]
+        const center = [
+            deck.pop() as Card,
+            deck.pop() as Card,
+            deck.pop() as Card,
+        ]
+        const right = [
+            deck.pop() as Card,
+            deck.pop() as Card,
+            deck.pop() as Card,
+        ]
+        return new Field(deck, hand, left, center, right);
+    }
+
     public static Shuffle(): Card[] {
         const deck = [
             Card.Red1,

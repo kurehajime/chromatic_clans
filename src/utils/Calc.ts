@@ -8,9 +8,9 @@ export class Calc {
         let player2_red = 0;
         let player2_blue = 0;
         let player2_green = 0;
-        const red1 = line1.includes(Card.Red1) || line2.includes(Card.Red1);
-        const blue1 = line1.includes(Card.Blue1) || line2.includes(Card.Blue1);
-        const green1 = line1.includes(Card.Green1) || line2.includes(Card.Green1);
+        const red1 = line1[2] == Card.Red1 || line2[2] == Card.Red1;
+        const blue1 = line1[2] == Card.Blue1 || line2[2] == Card.Blue1;
+        const green1 = line1[2] == Card.Green1 || line2[2] == Card.Green1;
 
         for (const c of line1) {
             const color = c / 10 | 0;
@@ -58,9 +58,9 @@ export class Calc {
         return [Math.max(player1_red, player1_blue, player1_green), Math.max(player2_red, player2_blue, player2_green)]
     }
     public static CalcLine(line1: Card[], line2: Card[]): number {
-        const red2 = line1.includes(Card.Red2) || line2.includes(Card.Red2);
-        const blue2 = line1.includes(Card.Blue2) || line2.includes(Card.Blue2);
-        const green2 = line1.includes(Card.Green2) || line2.includes(Card.Green2);
+        const red2 = line1[2] == Card.Red2 || line2[2] == Card.Red2;
+        const blue2 = line1[2] == Card.Blue2 || line2[2] == Card.Blue2;
+        const green2 = line1[2] == Card.Green2 || line2[2] == Card.Green2;
 
         const [player1, player2] = Calc.CalcLinePoint(line1, line2);
 
