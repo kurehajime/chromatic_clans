@@ -31,4 +31,7 @@ export class FieldSet {
         }
         return new FieldSet(field1, field2);
     }
+    public GameSet(): boolean {
+        return this.Field1.Hand.length === 0 && this.Field2.Hand.length === 0;
+    }
 }
