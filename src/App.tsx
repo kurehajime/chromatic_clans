@@ -5,7 +5,7 @@ import { FieldSet } from './utils/FieldSet'
 import { GameMaster } from './utils/GameMaster'
 
 function App() {
-  const [fieldSet, setFieldSet] = useState<FieldSet>(GameMaster.DummyFieldSet())
+  const [fieldSet, setFieldSet] = useState<FieldSet>(GameMaster.InitFieldSet())
 
   return (
     <>
