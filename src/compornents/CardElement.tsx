@@ -1,6 +1,6 @@
 import { Card } from "../utils/Card";
 import { Player } from "../utils/Player";
-import { BLOCK_SIZE } from "../utils/conf";
+import { BLOCK_SIZE, CARD_SIZE } from "../utils/conf";
 type Props = {
     x: number
     y: number
@@ -45,10 +45,10 @@ export default function CardElement(props: Props) {
     }
     return (
         <g>
-            <rect x={x} y={y} width={BLOCK_SIZE * 2} height={BLOCK_SIZE * 2 * 1.4}
+            <rect x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
                 fill={colorStr}
                 stroke="black"
-                stroke-opacity="0.2"
+                strokeOpacity="0.2"
             />
             {
                 <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 0.5} fontSize={BLOCK_SIZE * 0.5} fill="black">{number > 0 ? number : ""}</text>
@@ -60,7 +60,7 @@ export default function CardElement(props: Props) {
                     width={BLOCK_SIZE * 1.8}
                     height={BLOCK_SIZE * 0.9}
                     fill="transparent"
-                    stroke-opacity="0.2"
+                    strokeOpacity="0.2"
                     stroke="black"
                 ></rect>
             }
