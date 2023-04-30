@@ -26,6 +26,9 @@ export default function PointerElement(props: Props) {
         } else {
             if (props.select(hits)) {
                 setFold(hits)
+            } else {
+                props.select(Hit.none)
+                setFold(Hit.none)
             }
         }
         e.preventDefault()

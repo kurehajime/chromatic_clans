@@ -14,31 +14,13 @@ export default function GameElement() {
 
     const select = (hit: Hit): boolean => {
         setFold(hit)
-        if (gameState.turn === Player.Player1) {
-            if (hit === Hit.player1Hand1 && gameState.fieldSet.Field1.Hand.length > 0) {
-                return true
-            }
-            if (hit === Hit.player1Hand2 && gameState.fieldSet.Field1.Hand.length > 1) {
-                return true
-            }
-            if (hit === Hit.player1Hand3 && gameState.fieldSet.Field1.Hand.length > 2) {
-                return true
-            }
-        }
-        if (gameState.turn === Player.Player2) {
-            if (hit === Hit.player2Hand1 && gameState.fieldSet.Field2.Hand.length > 0) {
-                return true
-            }
-            if (hit === Hit.player2Hand2 && gameState.fieldSet.Field2.Hand.length > 1) {
-                return true
-            }
-            if (hit === Hit.player2Hand3 && gameState.fieldSet.Field2.Hand.length > 2) {
-                return true
-            }
-        }
-        return false
+        return gameState.canSelect(hit)
     }
     const move = (from: Hit, to: Hit): boolean => {
+        if (gameState.canSummon(from, to)) {
+            return false
+        }
+        setGameState(gameState.summon(from, to))
         return true
     }
 
