@@ -9,6 +9,9 @@ export class GameState {
         this.fieldSet = fieldSet;
         this.turn = turn;
     }
+
+
+
     public Clone(): GameState {
         return new GameState(this.fieldSet.Clone(), this.turn);
     }

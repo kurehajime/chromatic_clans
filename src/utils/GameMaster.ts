@@ -1,17 +1,21 @@
 import { Card } from "./Card";
 import { Field } from "./Field";
 import { FieldSet } from "./FieldSet";
+import { GameState } from "./GameState";
+import { Player } from "./Player";
 
 export class GameMaster {
-    public static InitFieldSet(): FieldSet {
+    public static InitFieldSet(): GameState {
         const field1 = GameMaster.InitFiled();
         const field2 = GameMaster.InitFiled();
-        return new FieldSet(field1, field2);
+        const fs = new FieldSet(field1, field2);
+        return new GameState(fs, Player.Player1);
     }
-    public static DummyFieldSet(): FieldSet {
+    public static DummyFieldSet(): GameState {
         const field1 = GameMaster.DummyField();
         const field2 = GameMaster.DummyField();
-        return new FieldSet(field1, field2);
+        const fs = new FieldSet(field1, field2);
+        return new GameState(fs, Player.Player1);
     }
 
     public static InitFiled(): Field {

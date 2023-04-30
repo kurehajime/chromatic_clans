@@ -2,9 +2,15 @@ import { useEffect, useRef, useState } from "react"
 import { BLOCK_SIZE, CARD_SIZE, XY } from "../utils/conf"
 import "./PointerElement.css"
 import { Hit } from "../utils/Hit"
-
-export default function PointerElement() {
+import { FieldSet } from "../utils/FieldSet"
+type Props = {
+    fieldSet: FieldSet
+    select: (hit: Hit) => boolean
+    move: (from: Hit, to: Hit) => boolean
+}
+export default function PointerElement(props: Props) {
     const svg = useRef<SVGRectElement>(null)
+    const [fold, setFold] = useState<Hit>(Hit.none)
 
     const mouseMove = (event: Event) => {
         const e = event as PointerEvent
@@ -12,7 +18,16 @@ export default function PointerElement() {
     const mouseDown = (event: Event) => {
         const e = event as PointerEvent
         const hits = hitCard(e.offsetX, e.offsetY)
-        console.log(hits)
+        if (fold) {
+            if (hits !== Hit.none) {
+                props.move(fold, hits)
+            }
+            props.select(Hit.none)
+        } else {
+            if (props.select(hits)) {
+                setFold(hits)
+            }
+        }
         e.preventDefault()
     }
     const mouseUp = (event: Event) => {
