@@ -19,7 +19,8 @@ export default function GameElement() {
         }
     }
     const move = (from: Hit, to: Hit): boolean => {
-        if (gameState.canSummon(from, to)) {
+        console.log("move", from, to)
+        if (!gameState.canSummon(from, to)) {
             return false
         }
         setGameState(gameState.summon(from, to))

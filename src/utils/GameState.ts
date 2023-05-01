@@ -42,7 +42,7 @@ export class GameState {
         if (to === Hit.Right) {
             line = Line.Right
         }
-        if (handIndex >= 0 && line) {
+        if (handIndex >= 0 && line !== null) {
             const fs = this.fieldSet.Summon(this.turn, handIndex, line)
             return new GameState(fs, this.turn);
         }
@@ -100,7 +100,7 @@ export class GameState {
                 return true
             }
         }
-        return true
+        return false
     }
 
     public Clone(): GameState {

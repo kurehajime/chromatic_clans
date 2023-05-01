@@ -65,7 +65,6 @@ export default function PointerElement(props: Props) {
     }
 
     const hitCard = (x: number, y: number): Hit => {
-        console.log(x, y)
         switch (true) {
             case hit(x, y, XY.player1Hand1x, XY.player1Hand1y, CARD_SIZE.width, CARD_SIZE.height):
                 return Hit.player1Hand1;
