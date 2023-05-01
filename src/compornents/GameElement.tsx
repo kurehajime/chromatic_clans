@@ -6,15 +6,17 @@ import PointerElement from "./PointerElement"
 import "./GameElement.css"
 import { Hit } from "../utils/Hit"
 import { GameState } from "../utils/GameState"
-import { Player } from "../utils/Player"
 
 export default function GameElement() {
     const [gameState, setGameState] = useState<GameState>(GameMaster.InitFieldSet())
     const [fold, setFold] = useState<Hit>(Hit.none)
 
-    const select = (hit: Hit): boolean => {
-        setFold(hit)
-        return gameState.canSelect(hit)
+    const select = (hit: Hit) => {
+        if (gameState.canSelect(hit)) {
+            setFold(hit)
+        } else {
+            setFold(Hit.none)
+        }
     }
     const move = (from: Hit, to: Hit): boolean => {
         if (gameState.canSummon(from, to)) {
@@ -31,9 +33,10 @@ export default function GameElement() {
                     fieldSet={gameState.fieldSet}
                 ></GameFieldElement>
                 <PointerElement
-                    fieldSet={gameState.fieldSet}
+                    gameState={gameState}
                     select={select}
                     move={move}
+                    fold={fold}
                 ></PointerElement>
             </svg>
         </div>

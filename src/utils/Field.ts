@@ -16,6 +16,25 @@ export class Field {
         this.Right = right;
     }
 
+    public Hand1(): Card | undefined {
+        if (this.Hand.length > 0) {
+            return this.Hand[0]
+        }
+        return undefined
+    }
+    public Hand2(): Card | undefined {
+        if (this.Hand.length > 1) {
+            return this.Hand[1]
+        }
+        return undefined
+    }
+    public Hand3(): Card | undefined {
+        if (this.Hand.length > 2) {
+            return this.Hand[2]
+        }
+        return undefined
+    }
+
     public Clone(): Field {
         return new Field(
             this.Deck.slice(),
