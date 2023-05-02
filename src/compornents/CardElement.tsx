@@ -10,12 +10,14 @@ import swordman_green from "../assets/swordman_green.png"
 import dragon_red from "../assets/dragon_red.png"
 import dragon_blue from "../assets/dragon_blue.png"
 import dragon_green from "../assets/dragon_green.png"
+import reverse from "../assets/reverse.png"
 type Props = {
     x: number
     y: number
     card?: Card
     player: Player
     stack?: number
+    hidden?: boolean
 }
 export default function CardElement(props: Props) {
     const stack = props.stack ?? 0;
@@ -107,6 +109,19 @@ export default function CardElement(props: Props) {
             }
             <text x={x + BLOCK_SIZE * 0.2} y={y + BLOCK_SIZE * 2.4} fontSize={BLOCK_SIZE * 0.2} fill="white">{cardText1}</text>
             <text x={x + BLOCK_SIZE * 0.2} y={y + BLOCK_SIZE * 2.6} fontSize={BLOCK_SIZE * 0.2} fill="white">{cardText2}</text>
+            {
+                props.hidden && <image href={reverse} x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
+                    clipPath={`inset(0px 0px 0px 0px round 3px)`}
+                />
+            }
+            {
+                props.hidden && <rect x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
+                    fill="transparent"
+                    stroke="black"
+                    rx="3" ry="3"
+                ></rect>
+            }
+
         </g>
     )
 }

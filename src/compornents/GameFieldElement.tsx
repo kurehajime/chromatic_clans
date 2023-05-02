@@ -208,5 +208,9 @@ export default function GameFieldElement(props: Props) {
             // 右側プレイヤー２Stack３
             props.fieldSet.Field2.Right.length > 2 && <CardElement x={XY.player2RightX} y={XY.player2RightY} card={props.fieldSet.Field2.Right[2]} player={Player.Player2} stack={2} />
         }
+
+        {
+            props.fieldSet.Field1.Deck.length > 0 && <CardElement x={XY.player1DeckX} y={XY.player1DeckY} player={Player.Player1} hidden={true} />
+        }
     </g>);
 }

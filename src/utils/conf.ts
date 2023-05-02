@@ -27,6 +27,9 @@ export const XY = {
     player2CenterY: BLOCK_SIZE * 6,
     player2RightX: BLOCK_SIZE * 7,
     player2RightY: BLOCK_SIZE * 6,
+
+    player1DeckX: BLOCK_SIZE * 11,
+    player1DeckY: BLOCK_SIZE * 15,
 }
 export const CARD_SIZE = {
     width: BLOCK_SIZE * 2,
