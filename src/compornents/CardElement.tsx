@@ -10,8 +10,11 @@ type Props = {
 }
 export default function CardElement(props: Props) {
     const stack = props.stack ?? 0;
-    const x = props.x + stack * BLOCK_SIZE * 0.1;
-    const y = props.y + stack * BLOCK_SIZE * 0.6;
+    const stackVec = props.player === Player.Player1 ? 1 : -1;
+    const x = props.x + stackVec * (stack * BLOCK_SIZE * 0.1);
+    const y = props.y + stackVec * (stack * BLOCK_SIZE * 0.6);
+    const rotateX = x + CARD_SIZE.width / 2;
+    const rotateY = y + CARD_SIZE.height / 2;
     const color = props.card ? props.card / 10 | 0 : 0;
     const number = props.card ? props.card % 10 : 0;
     const colorStr = color === 1 ? "#ffeaf4" : color === 2 ? "#ebf4ff" : color === 3 ? "#f4ffeb" : "lightgray";
@@ -43,15 +46,24 @@ export default function CardElement(props: Props) {
             cardText2 = "この列の効果は無効";
             break;
     }
+    let rotate = ""
+    if (props.player === Player.Player2) {
+        rotate = `rotate(180,${rotateX},${rotateY})`
+    }
+
     return (
-        <g>
+        <g transform={rotate} >
             <rect x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
                 fill={colorStr}
                 stroke="black"
-                strokeOpacity="0.2"
+                strokeOpacity="0.1"
+                rx="3" ry="3"
             />
             {
-                <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 0.5} fontSize={BLOCK_SIZE * 0.5} fill="black">{number > 0 ? number : ""}</text>
+                <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 0.5}
+                    fontSize={BLOCK_SIZE * 0.5}
+                    fontWeight={600}
+                    fill="black">{number > 0 ? number : ""}</text>
             }
             {
                 props.card && <rect
@@ -60,7 +72,7 @@ export default function CardElement(props: Props) {
                     width={BLOCK_SIZE * 1.8}
                     height={BLOCK_SIZE * 0.9}
                     fill="transparent"
-                    strokeOpacity="0.2"
+                    strokeOpacity="0.1"
                     stroke="black"
                 ></rect>
             }
