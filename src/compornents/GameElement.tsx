@@ -32,6 +32,7 @@ export default function GameElement() {
             <svg width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 18} className="game" >
                 <GameFieldElement
                     fieldSet={gameState.fieldSet}
+                    fold={fold}
                 ></GameFieldElement>
                 <PointerElement
                     gameState={gameState}
