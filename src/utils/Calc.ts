@@ -17,13 +17,13 @@ export class Calc {
             const score = c % 10;
             switch (color) {
                 case 1:
-                    player1_red += score;
+                    player1_red += blue1 ? 1 : score;
                     break;
                 case 2:
-                    player1_blue += score;
+                    player1_blue += green1 ? 1 : score;
                     break;
                 case 3:
-                    player1_green += score;
+                    player1_green += red1 ? 1 : score;
                     break;
             }
         }
@@ -32,13 +32,13 @@ export class Calc {
             const score = c % 10;
             switch (color) {
                 case 1:
-                    player2_red += score;
+                    player2_red += blue1 ? 1 : score;
                     break;
                 case 2:
-                    player2_blue += score;
+                    player2_blue += green1 ? 1 : score;
                     break;
                 case 3:
-                    player2_green += score;
+                    player2_green += red1 ? 1 : score;
                     break;
             }
         }

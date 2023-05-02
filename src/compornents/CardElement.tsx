@@ -33,7 +33,7 @@ export default function CardElement(props: Props) {
     switch (props.card) {
         case Card.Red1:
             cardText1 = "一番上にある時、";
-            cardText2 = "青を０にする";
+            cardText2 = "この列の青を１にする";
             image = princess_red;
             break;
         case Card.Red2:
@@ -46,7 +46,7 @@ export default function CardElement(props: Props) {
             break;
         case Card.Blue1:
             cardText1 = "一番上にある時、";
-            cardText2 = "赤を０にする";
+            cardText2 = "この列の赤を１にする";
             image = princess_blue;
             break;
         case Card.Blue2:
@@ -59,7 +59,7 @@ export default function CardElement(props: Props) {
             break;
         case Card.Green1:
             cardText1 = "一番上にある時、";
-            cardText2 = "青を０にする";
+            cardText2 = "この列の青を１にする";
             image = princess_green;
             break;
         case Card.Green2:
