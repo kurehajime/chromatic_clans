@@ -39,8 +39,6 @@ export class CardParam {
                 cardText1 = "一番上にある時、";
                 cardText2 = "この列の効果は無効";
                 break;
-            case Card.Green3:
-                break;
         }
         return [cardText1, cardText2]
     }
@@ -76,5 +74,26 @@ export class CardParam {
                 break;
         }
         return image;
+    }
+    public static getColorStr(card: Card | undefined): string {
+        let colorStr = "transparent";
+        switch (card) {
+            case Card.Red1:
+            case Card.Red2:
+            case Card.Red3:
+                colorStr = "#b8008d";
+                break;
+            case Card.Blue1:
+            case Card.Blue2:
+            case Card.Blue3:
+                colorStr = "#008db7";
+                break;
+            case Card.Green1:
+            case Card.Green2:
+            case Card.Green3:
+                colorStr = "#8db800";
+                break;
+        }
+        return colorStr;
     }
 }

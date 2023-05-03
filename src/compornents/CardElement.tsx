@@ -19,9 +19,8 @@ export default function CardElement(props: Props) {
     const y = props.y + stackVec * (stack * BLOCK_SIZE * 0.6);
     const rotateX = x + CARD_SIZE.width / 2;
     const rotateY = y + CARD_SIZE.height / 2;
-    const color = props.card ? props.card / 10 | 0 : 0;
     const number = props.card ? props.card % 10 : 0;
-    const colorStr = color === 1 ? "#b8008d" : color === 2 ? "#008db7" : color === 3 ? "#8db800" : "transparent";
+    const colorStr = CardParam.getColorStr(props.card)
     const cardText1 = CardParam.getDescriptions(props.card)[0];
     const cardText2 = CardParam.getDescriptions(props.card)[1];
     const image = CardParam.getCardImage(props.card);
