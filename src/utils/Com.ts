@@ -24,11 +24,11 @@ export class Com {
                 const fill2 = this.fillField(action.field);
                 const win = Calc.CalcWin(fill1, fill2);
                 if (win < 0) {
-                    avg += 1;
+                    avg += 2;
                 } else if (win === 0) {
-                    avg += 0.2;
-                } else {
                     avg += 0;
+                } else {
+                    avg += -1;
                 }
             }
             action.point = avg / count;
