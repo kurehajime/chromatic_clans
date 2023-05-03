@@ -26,7 +26,7 @@ export class Com {
                 if (win < 0) {
                     avg += 1;
                 } else if (win === 0) {
-                    avg += 0.5;
+                    avg += 0.2;
                 } else {
                     avg += 0;
                 }
