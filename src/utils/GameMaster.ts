@@ -2,20 +2,22 @@ import { Card } from "./Card";
 import { Field } from "./Field";
 import { FieldSet } from "./FieldSet";
 import { GameState } from "./GameState";
+import { Phase } from "./Phase";
 import { Player } from "./Player";
 
 export class GameMaster {
+
     public static InitFieldSet(): GameState {
         const field1 = GameMaster.InitFiled();
         const field2 = GameMaster.InitFiled();
         const fs = new FieldSet(field1, field2);
-        return new GameState(fs, Player.Player1);
+        return new GameState(fs, Player.Player1, Phase.Playing);
     }
     public static DummyFieldSet(): GameState {
         const field1 = GameMaster.DummyField();
         const field2 = GameMaster.DummyField();
         const fs = new FieldSet(field1, field2);
-        return new GameState(fs, Player.Player1);
+        return new GameState(fs, Player.Player1, Phase.Playing);
     }
 
     public static InitFiled(): Field {

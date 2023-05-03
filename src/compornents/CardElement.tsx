@@ -78,7 +78,7 @@ export default function CardElement(props: Props) {
     if (props.player === Player.Player2) {
         rotate = `rotate(180,${rotateX},${rotateY})`
     }
-    let showFrame = props.card !== undefined || stack === 0;
+    const showFrame = props.card !== undefined || stack === 0;
 
     return (
         <g transform={rotate} >

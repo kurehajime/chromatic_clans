@@ -9,6 +9,8 @@ import { GameState } from "../utils/GameState"
 import { Player } from "../utils/Player"
 import { Com } from "../utils/Com"
 import { Line } from "../utils/Line"
+import PhaseElement from "./PhaseElement"
+import { Phase } from "../utils/Phase"
 
 export default function GameElement() {
     const [gameState, setGameState] = useState<GameState>(GameMaster.InitFieldSet())
@@ -19,6 +21,12 @@ export default function GameElement() {
             setFold(hit)
         } else {
             setFold(Hit.none)
+        }
+        if (gameState.phase === Phase.Open ||
+            gameState.phase === Phase.OpenLeft ||
+            gameState.phase === Phase.OpenRight ||
+            gameState.phase === Phase.OpenCenter) {
+            setGameState(gameState.nextPhase())
         }
     }
     const move = (from: Hit, to: Hit): boolean => {
@@ -58,7 +66,9 @@ export default function GameElement() {
                 <GameFieldElement
                     fieldSet={gameState.fieldSet}
                     fold={fold}
+                    phase={gameState.phase}
                 ></GameFieldElement>
+                <PhaseElement gameState={gameState}></PhaseElement>
                 <PointerElement
                     gameState={gameState}
                     select={select}

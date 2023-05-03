@@ -1,13 +1,35 @@
 import { FieldSet } from "../utils/FieldSet";
 import { Hit } from "../utils/Hit";
+import { Phase } from "../utils/Phase";
 import { Player } from "../utils/Player";
 import { BLOCK_SIZE, XY } from "../utils/conf";
 import CardElement from "./CardElement";
 type Props = {
     fieldSet: FieldSet
     fold: Hit
+    phase: Phase
 }
 export default function GameFieldElement(props: Props) {
+    let hiddenLeft = true
+    let hiddenCenter = true
+    let hiddenRight = true
+    if (props.phase === Phase.OpenLeft) {
+        hiddenLeft = false
+    }
+    if (props.phase === Phase.OpenCenter) {
+        hiddenLeft = false
+        hiddenCenter = false
+    }
+    if (props.phase === Phase.OpenRight) {
+        hiddenLeft = false
+        hiddenCenter = false
+        hiddenRight = false
+    }
+    if (props.phase === Phase.End) {
+        hiddenLeft = false
+        hiddenCenter = false
+        hiddenRight = false
+    }
 
 
     return (<g>
@@ -146,7 +168,7 @@ export default function GameFieldElement(props: Props) {
         }
         {
             // 左側プレイヤー１Stack３
-            props.fieldSet.Field1.Left.length > 2 && <CardElement x={XY.player1LeftX} y={XY.player1LeftY} card={props.fieldSet.Field1.Left[2]} player={Player.Player1} stack={2} hidden={true} halfOpen={true} />
+            props.fieldSet.Field1.Left.length > 2 && <CardElement x={XY.player1LeftX} y={XY.player1LeftY} card={props.fieldSet.Field1.Left[2]} player={Player.Player1} stack={2} hidden={hiddenLeft} halfOpen={true} />
         }
         {
             // 中央プレイヤー１Stack１
@@ -158,7 +180,7 @@ export default function GameFieldElement(props: Props) {
         }
         {
             // 中央プレイヤー１Stack３
-            props.fieldSet.Field1.Center.length > 2 && <CardElement x={XY.player1CenterX} y={XY.player1CenterY} card={props.fieldSet.Field1.Center[2]} player={Player.Player1} stack={2} hidden={true} halfOpen={true} />
+            props.fieldSet.Field1.Center.length > 2 && <CardElement x={XY.player1CenterX} y={XY.player1CenterY} card={props.fieldSet.Field1.Center[2]} player={Player.Player1} stack={2} hidden={hiddenCenter} halfOpen={true} />
         }
         {
             // 右側プレイヤー１Stack１
@@ -170,7 +192,7 @@ export default function GameFieldElement(props: Props) {
         }
         {
             // 右側プレイヤー１Stack３
-            props.fieldSet.Field1.Right.length > 2 && <CardElement x={XY.player1RightX} y={XY.player1RightY} card={props.fieldSet.Field1.Right[2]} player={Player.Player1} stack={2} hidden={true} halfOpen={true} />
+            props.fieldSet.Field1.Right.length > 2 && <CardElement x={XY.player1RightX} y={XY.player1RightY} card={props.fieldSet.Field1.Right[2]} player={Player.Player1} stack={2} hidden={hiddenRight} halfOpen={true} />
         }
         {
             // 左側プレイヤー２Stack１
@@ -182,7 +204,7 @@ export default function GameFieldElement(props: Props) {
         }
         {
             // 左側プレイヤー２Stack３
-            props.fieldSet.Field2.Left.length > 2 && <CardElement x={XY.player2LeftX} y={XY.player2LeftY} card={props.fieldSet.Field2.Left[2]} player={Player.Player2} stack={2} hidden={true} />
+            props.fieldSet.Field2.Left.length > 2 && <CardElement x={XY.player2LeftX} y={XY.player2LeftY} card={props.fieldSet.Field2.Left[2]} player={Player.Player2} stack={2} hidden={hiddenLeft} />
         }
         {
             // 中央プレイヤー２Stack１
@@ -194,7 +216,7 @@ export default function GameFieldElement(props: Props) {
         }
         {
             // 中央プレイヤー２Stack３
-            props.fieldSet.Field2.Center.length > 2 && <CardElement x={XY.player2CenterX} y={XY.player2CenterY} card={props.fieldSet.Field2.Center[2]} player={Player.Player2} stack={2} hidden={true} />
+            props.fieldSet.Field2.Center.length > 2 && <CardElement x={XY.player2CenterX} y={XY.player2CenterY} card={props.fieldSet.Field2.Center[2]} player={Player.Player2} stack={2} hidden={hiddenCenter} />
         }
         {
             // 右側プレイヤー２Stack１
@@ -206,7 +228,7 @@ export default function GameFieldElement(props: Props) {
         }
         {
             // 右側プレイヤー２Stack３
-            props.fieldSet.Field2.Right.length > 2 && <CardElement x={XY.player2RightX} y={XY.player2RightY} card={props.fieldSet.Field2.Right[2]} player={Player.Player2} stack={2} hidden={true} />
+            props.fieldSet.Field2.Right.length > 2 && <CardElement x={XY.player2RightX} y={XY.player2RightY} card={props.fieldSet.Field2.Right[2]} player={Player.Player2} stack={2} hidden={hiddenRight} />
         }
 
         {

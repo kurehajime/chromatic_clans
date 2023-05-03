@@ -57,6 +57,8 @@ export default function PointerElement(props: Props) {
             } else {
                 props.select(hits)
             }
+        } else {
+            props.select(Hit.none)
         }
 
         setOffsetX(e.offsetX)
