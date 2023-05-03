@@ -1,6 +1,16 @@
 import { Card } from "./Card";
+import { Field } from "./Field";
 
 export class Calc {
+
+    public static CalcWin(field1: Field, field2: Field): number {
+        const left = Calc.CalcLine(field1.Left, field2.Left);
+        const center = Calc.CalcLine(field1.Center, field2.Center);
+        const right = Calc.CalcLine(field1.Right, field2.Right);
+        return left + center + right;
+    }
+
+
     public static CalcLinePoint(line1: Card[], line2: Card[]): [number, number] {
         let player1_red = 0;
         let player1_blue = 0;
@@ -41,18 +51,6 @@ export class Calc {
                     player2_green += red1 ? 1 : score;
                     break;
             }
-        }
-        if (red1) {
-            player1_green *= 0;
-            player2_green *= 0;
-        }
-        if (blue1) {
-            player1_red *= 0;
-            player2_red *= 0;
-        }
-        if (green1) {
-            player1_blue *= 0;
-            player2_blue *= 0;
         }
 
         return [Math.max(player1_red, player1_blue, player1_green), Math.max(player2_red, player2_blue, player2_green)]

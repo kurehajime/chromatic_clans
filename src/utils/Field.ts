@@ -45,6 +45,22 @@ export class Field {
         );
     }
 
+    public canSummon(handIndex: number, line: Line): boolean {
+        if (this.Hand.length <= handIndex) {
+            return false;
+        }
+        if (this.Left.length > 2 && line === Line.Left) {
+            return false;
+        }
+        if (this.Center.length > 2 && line === Line.Center) {
+            return false;
+        }
+        if (this.Right.length > 2 && line === Line.Right) {
+            return false;
+        }
+        return true;
+    }
+
     public Summon(handIndex: number, line: Line) {
         const deck = [...this.Deck];
         const hand = [...this.Hand];
