@@ -1,16 +1,8 @@
 import { Card } from "../utils/Card";
 import { Player } from "../utils/Player";
 import { BLOCK_SIZE, CARD_SIZE } from "../utils/conf";
-import princess_red from "../assets/princess_red.png"
-import princess_blue from "../assets/princess_blue.png"
-import princess_green from "../assets/princess_green.png"
-import swordman_red from "../assets/swordman_red.png"
-import swordman_blue from "../assets/swordman_blue.png"
-import swordman_green from "../assets/swordman_green.png"
-import dragon_red from "../assets/dragon_red.png"
-import dragon_blue from "../assets/dragon_blue.png"
-import dragon_green from "../assets/dragon_green.png"
 import reverse from "../assets/reverse.png"
+import { CardParam } from "../utils/CardParam";
 type Props = {
     x: number
     y: number
@@ -30,50 +22,9 @@ export default function CardElement(props: Props) {
     const color = props.card ? props.card / 10 | 0 : 0;
     const number = props.card ? props.card % 10 : 0;
     const colorStr = color === 1 ? "#b8008d" : color === 2 ? "#008db7" : color === 3 ? "#8db800" : "transparent";
-    let cardText1 = "";
-    let cardText2 = "";
-    let image = "";
-    switch (props.card) {
-        case Card.Red1:
-            cardText1 = "一番上にある時、";
-            cardText2 = "この列の青を１にする";
-            image = princess_red;
-            break;
-        case Card.Red2:
-            cardText1 = "一番上にある時、";
-            cardText2 = "この列の勝点は２倍";
-            image = swordman_red;
-            break;
-        case Card.Red3:
-            image = dragon_red;
-            break;
-        case Card.Blue1:
-            cardText1 = "一番上にある時、";
-            cardText2 = "この列の赤を１にする";
-            image = princess_blue;
-            break;
-        case Card.Blue2:
-            cardText1 = "一番上にある時、";
-            cardText2 = "この列の勝敗を逆転";
-            image = swordman_blue;
-            break;
-        case Card.Blue3:
-            image = dragon_blue;
-            break;
-        case Card.Green1:
-            cardText1 = "一番上にある時、";
-            cardText2 = "この列の青を１にする";
-            image = princess_green;
-            break;
-        case Card.Green2:
-            cardText1 = "一番上にある時、";
-            cardText2 = "この列の効果は無効";
-            image = swordman_green;
-            break;
-        case Card.Green3:
-            image = dragon_green;
-            break;
-    }
+    const cardText1 = CardParam.getDescriptions(props.card)[0];
+    const cardText2 = CardParam.getDescriptions(props.card)[1];
+    const image = CardParam.getCardImage(props.card);
     let rotate = ""
     if (props.player === Player.Player2) {
         rotate = `rotate(180,${rotateX},${rotateY})`
