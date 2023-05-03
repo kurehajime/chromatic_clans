@@ -67,7 +67,7 @@ export class Calc {
             point *= 2;
         }
         if (blue2 && !green2) {
-            point *= 0;
+            point *= 0.5;
         }
 
         return point;

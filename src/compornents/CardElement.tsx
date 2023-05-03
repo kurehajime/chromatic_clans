@@ -53,7 +53,7 @@ export default function CardElement(props: Props) {
             break;
         case Card.Blue2:
             cardText1 = "一番上にある時、";
-            cardText2 = "この列の勝点は０";
+            cardText2 = "この列の勝点は半減";
             image = swordman_blue;
             break;
         case Card.Blue3:

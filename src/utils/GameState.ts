@@ -44,7 +44,7 @@ export class GameState {
         }
         if (handIndex >= 0 && line !== null) {
             const fs = this.fieldSet.Summon(this.turn, handIndex, line)
-            return new GameState(fs, this.turn);
+            return new GameState(fs, this.turn === Player.Player1 ? Player.Player2 : Player.Player1);
         }
         return this.Clone();
     }
