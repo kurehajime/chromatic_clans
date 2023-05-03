@@ -56,20 +56,22 @@ export class Calc {
         return [Math.max(player1_red, player1_blue, player1_green), Math.max(player2_red, player2_blue, player2_green)]
     }
     public static CalcLine(line1: Card[], line2: Card[]): number {
-        const red2 = line1[2] == Card.Red2 || line2[2] == Card.Red2;
-        const blue2 = line1[2] == Card.Blue2 || line2[2] == Card.Blue2;
         const green2 = line1[2] == Card.Green2 || line2[2] == Card.Green2;
-
         const [player1, player2] = Calc.CalcLinePoint(line1, line2);
 
         let point = player1 - player2;
-        if (red2 && !green2) {
+        if (line1[2] == Card.Red2 && !green2) {
             point *= 2;
         }
-        if (blue2 && !green2) {
+        if (line2[2] == Card.Red2 && !green2) {
+            point *= 2;
+        }
+        if (line1[2] == Card.Blue2 && !green2) {
             point *= -1;
         }
-
+        if (line2[2] == Card.Blue2 && !green2) {
+            point *= -1;
+        }
         return point;
     }
 }
