@@ -18,6 +18,7 @@ type Props = {
     player: Player
     stack?: number
     hidden?: boolean
+    halfOpen?: boolean
 }
 export default function CardElement(props: Props) {
     const stack = props.stack ?? 0;
@@ -112,6 +113,7 @@ export default function CardElement(props: Props) {
             {
                 props.hidden && <image href={reverse} x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
                     clipPath={`inset(0px 0px 0px 0px round 3px)`}
+                    opacity={props.halfOpen ? 0.5 : 1}
                 />
             }
             {
