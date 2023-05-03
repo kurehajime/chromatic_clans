@@ -2,7 +2,6 @@ import { Calc } from "./Calc";
 import { Card } from "./Card";
 import { Field } from "./Field";
 import { FieldSet } from "./FieldSet";
-import { GameMaster } from "./GameMaster";
 import { Line } from "./Line";
 
 export type Action = {
@@ -34,7 +33,14 @@ export class Com {
             action.point = avg / count;
         }
 
-        return actions[0];
+        let max = actions[0]
+        for (const action of actions) {
+            if (action.point && action.point > (max.point ?? 0)) {
+                max = action
+            }
+        }
+
+        return max;
     }
 
     public static getNextActions(field: Field): Action[] {

@@ -36,7 +36,7 @@ export default function GameElement() {
         let ignore = false;
         async function think() {
             if (!ignore && gameState.turn === Player.Player2) {
-                const action = Com.getBestAction(10, gameState.fieldSet)
+                const action = Com.getBestAction(100, gameState.fieldSet)
                 const from = action.handIndex === 0 ? Hit.player2Hand1 : action.handIndex === 1 ? Hit.player2Hand2 : Hit.player2Hand3;
                 const to = action.line === Line.Left ? Hit.Left : action.line === Line.Center ? Hit.Center : Hit.Right;
                 const next = gameState.summon(from, to);
