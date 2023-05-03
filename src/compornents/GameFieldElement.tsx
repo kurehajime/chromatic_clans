@@ -11,7 +11,7 @@ export default function GameFieldElement(props: Props) {
 
 
     return (<g>
-        <rect x={0} y={0} width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 21} fill="lightgray" />
+        <rect x={0} y={0} width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 21} fill="#16160e" />
         {
             // 手札プレイヤー１手札１
             <CardElement x={XY.player1Hand1x} y={XY.player1Hand1y} player={Player.Player1} />

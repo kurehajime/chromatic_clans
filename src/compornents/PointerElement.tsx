@@ -5,6 +5,7 @@ import { Hit } from "../utils/Hit"
 import HoverElement from "./HoverElement"
 import { Card } from "../utils/Card"
 import { GameState } from "../utils/GameState"
+import { Player } from "../utils/Player"
 type Props = {
     gameState: GameState
     select: (hit: Hit) => void
@@ -47,14 +48,17 @@ export default function PointerElement(props: Props) {
     const mouseDown = (event: Event) => {
         const e = event as PointerEvent
         const hits = hitCard(e.offsetX, e.offsetY)
-        if (props.fold) {
-            if (hits !== Hit.none) {
-                props.move(props.fold, hits)
+        if (props.gameState.turn === Player.Player1) {
+            if (props.fold) {
+                if (hits !== Hit.none) {
+                    props.move(props.fold, hits)
+                }
+                props.select(Hit.none)
+            } else {
+                props.select(hits)
             }
-            props.select(Hit.none)
-        } else {
-            props.select(hits)
         }
+
         setOffsetX(e.offsetX)
         setOffsetY(e.offsetY)
         e.preventDefault()

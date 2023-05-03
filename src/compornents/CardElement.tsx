@@ -29,7 +29,7 @@ export default function CardElement(props: Props) {
     const rotateY = y + CARD_SIZE.height / 2;
     const color = props.card ? props.card / 10 | 0 : 0;
     const number = props.card ? props.card % 10 : 0;
-    const colorStr = color === 1 ? "#b8008d" : color === 2 ? "#008db7" : color === 3 ? "#8db800" : "lightgray";
+    const colorStr = color === 1 ? "#b8008d" : color === 2 ? "#008db7" : color === 3 ? "#8db800" : "transparent";
     let cardText1 = "";
     let cardText2 = "";
     let image = "";
@@ -78,15 +78,18 @@ export default function CardElement(props: Props) {
     if (props.player === Player.Player2) {
         rotate = `rotate(180,${rotateX},${rotateY})`
     }
+    let showFrame = props.card !== undefined || stack === 0;
 
     return (
         <g transform={rotate} >
-            <rect x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
-                fill={colorStr}
-                stroke="black"
-                strokeOpacity="0.1"
-                rx="3" ry="3"
-            />
+            {
+                showFrame && <rect x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
+                    fill={colorStr}
+                    stroke="white"
+                    strokeOpacity="0.1"
+                    rx="3" ry="3"
+                />
+            }
             {
                 props.card && <rect
                     x={x + BLOCK_SIZE * 0.1}
