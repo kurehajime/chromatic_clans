@@ -26,9 +26,9 @@ export class Calc {
         const player2_blue: number[] = [];
         const player2_green: number[] = [];
         const player2_white: number[] = [];
-        const red1 = line1[2] == Card.Red1 || line2[2] == Card.Red1;
-        const blue1 = line1[2] == Card.Blue1 || line2[2] == Card.Blue1;
-        const green1 = line1[2] == Card.Green1 || line2[2] == Card.Green1;
+        const red1 = (line1[2] == Card.Red1 || line2[2] == Card.Red1) && (line1[2] != Card.Green2 && line2[2] != Card.Green2);
+        const blue1 = (line1[2] == Card.Blue1 || line2[2] == Card.Blue1) && (line1[2] != Card.Green2 && line2[2] != Card.Green2);
+        const green1 = (line1[2] == Card.Green1 || line2[2] == Card.Green1) && (line1[2] != Card.Green2 && line2[2] != Card.Green2);
 
         for (const c of line1) {
             const color = c / 10 | 0;
