@@ -1,3 +1,4 @@
+import { Calc } from "../utils/Calc"
 import { Card } from "../utils/Card"
 import { CardParam } from "../utils/CardParam"
 import { GameState } from "../utils/GameState"
@@ -14,8 +15,21 @@ export default function BalloonElement(props: Props) {
     let x = BLOCK_SIZE * 3
     let y = BLOCK_SIZE * 2 + (props.player === Player.Player1 ? 0 : BLOCK_SIZE * -3)
     let card: Card | undefined = undefined
-    const cardText1 = CardParam.getDescriptions(card)[0];
-    const cardText2 = CardParam.getDescriptions(card)[1];
+    const cards1: Card[] = []
+    const cards2: Card[] = []
+    if (props.line === Line.Left) {
+        cards1.push(...props.gameState.fieldSet.Field1.Left)
+        cards2.push(...props.gameState.fieldSet.Field2.Left)
+    }
+    if (props.line === Line.Center) {
+        cards1.push(...props.gameState.fieldSet.Field1.Center)
+        cards2.push(...props.gameState.fieldSet.Field2.Center)
+    }
+    if (props.line === Line.Right) {
+        cards1.push(...props.gameState.fieldSet.Field1.Right)
+        cards2.push(...props.gameState.fieldSet.Field2.Right)
+    }
+    const point = props.player === Player.Player1 ? Calc.CalcMaxScore(cards1, cards2)[0] : Calc.CalcMaxScore(cards1, cards2)[1]
 
     if (props.player === Player.Player1 && props.line === Line.Left) {
         x += XY.player1LeftX
@@ -47,11 +61,27 @@ export default function BalloonElement(props: Props) {
         y += XY.player2RightY
         card = props.gameState.fieldSet.Field2.Right[2]
     }
-
-    const colorStr = CardParam.getColorStr(card)
+    const cardText1 = CardParam.getDescriptions(card)[0];
+    const cardText2 = CardParam.getDescriptions(card)[1];
+    const colorStr = CardParam.getColorStrByColor(point.color)
     return (<g>
         <rect x={x} y={y} width={BLOCK_SIZE * 4} height={BLOCK_SIZE * 2} fill={colorStr}
             strokeWidth="1" rx={BLOCK_SIZE * 0.1} ry={BLOCK_SIZE * 0.1} />
         <polygon points={`${x - 20},${y + BLOCK_SIZE * 1} ${x + 1},${y + BLOCK_SIZE * 0.7} ${x + 1},${y + BLOCK_SIZE * 1.3}`} fill={colorStr} />
+        <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 0.6}
+            fontSize={BLOCK_SIZE * 0.5}
+            fontWeight={600}
+            fill="white"
+        >{point.array.join(" + ") + " = " + point.point}</text>
+        <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 1.2}
+            fontSize={BLOCK_SIZE * 0.4}
+            fontWeight={600}
+            fill="white"
+        >{cardText1}</text>
+        <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 1.6}
+            fontSize={BLOCK_SIZE * 0.4}
+            fontWeight={600}
+            fill="white"
+        >{cardText2}</text>
     </g>)
 }

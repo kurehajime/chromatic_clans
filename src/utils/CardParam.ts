@@ -9,6 +9,7 @@ import swordman_green from "../assets/swordman_green.png"
 import dragon_red from "../assets/dragon_red.png"
 import dragon_blue from "../assets/dragon_blue.png"
 import dragon_green from "../assets/dragon_green.png"
+import { Color } from "./Color";
 
 export class CardParam {
     public static getDescriptions(card: Card | undefined): [string, string] {
@@ -75,6 +76,23 @@ export class CardParam {
         }
         return image;
     }
+
+    public static getColorStrByColor(color: Color): string {
+        let colorStr = "transparent";
+        switch (color) {
+            case Color.Red:
+                colorStr = "#b8008d";
+                break;
+            case Color.Blue:
+                colorStr = "#008db7";
+                break;
+            case Color.Green:
+                colorStr = "#8db800";
+                break;
+        }
+        return colorStr;
+    }
+
     public static getColorStr(card: Card | undefined): string {
         let colorStr = "transparent";
         switch (card) {
