@@ -2,7 +2,7 @@ import { FieldSet } from "../utils/FieldSet";
 import { Hit } from "../utils/Hit";
 import { Phase } from "../utils/Phase";
 import { Player } from "../utils/Player";
-import { BLOCK_SIZE, XY } from "../utils/conf";
+import { BLOCK_SIZE, FIELD_SIZE, XY } from "../utils/conf";
 import CardElement from "./CardElement";
 type Props = {
     fieldSet: FieldSet
@@ -33,7 +33,7 @@ export default function GameFieldElement(props: Props) {
 
 
     return (<g>
-        <rect x={0} y={0} width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 21} fill="#16160e" />
+        <rect x={0} y={0} width={FIELD_SIZE.width} height={FIELD_SIZE.height} fill="#16160e" />
         {
             // 手札プレイヤー１手札１
             <CardElement x={XY.player1Hand1x} y={XY.player1Hand1y} player={Player.Player1} />
@@ -148,15 +148,15 @@ export default function GameFieldElement(props: Props) {
         }
         {
             // 手札プレイヤー２手札１
-            props.fieldSet.Field2.Hand.length > 0 && <CardElement x={XY.player2Hand1x} y={XY.player2Hand1y} card={props.fold !== Hit.player2Hand1 ? props.fieldSet.Field2.Hand[0] : undefined} player={Player.Player2} />
+            props.fieldSet.Field2.Hand.length > 0 && <CardElement x={XY.player2Hand1x} y={XY.player2Hand1y} card={props.fold !== Hit.player2Hand1 ? props.fieldSet.Field2.Hand[0] : undefined} player={Player.Player2} hidden={true} />
         }
         {
             // 手札プレイヤー２手札２
-            props.fieldSet.Field2.Hand.length > 1 && <CardElement x={XY.player2Hand2x} y={XY.player2Hand2y} card={props.fold !== Hit.player2Hand2 ? props.fieldSet.Field2.Hand[1] : undefined} player={Player.Player2} />
+            props.fieldSet.Field2.Hand.length > 1 && <CardElement x={XY.player2Hand2x} y={XY.player2Hand2y} card={props.fold !== Hit.player2Hand2 ? props.fieldSet.Field2.Hand[1] : undefined} player={Player.Player2} hidden={true} />
         }
         {
             // 手札プレイヤー２手札３
-            props.fieldSet.Field2.Hand.length > 2 && <CardElement x={XY.player2Hand3x} y={XY.player2Hand3y} card={props.fold !== Hit.player2Hand3 ? props.fieldSet.Field2.Hand[2] : undefined} player={Player.Player2} />
+            props.fieldSet.Field2.Hand.length > 2 && <CardElement x={XY.player2Hand3x} y={XY.player2Hand3y} card={props.fold !== Hit.player2Hand3 ? props.fieldSet.Field2.Hand[2] : undefined} player={Player.Player2} hidden={true} />
         }
         {
             // 左側プレイヤー１Stack１

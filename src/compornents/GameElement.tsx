@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import GameFieldElement from "./GameFieldElement"
 import { GameMaster } from "../utils/GameMaster"
-import { BLOCK_SIZE } from "../utils/conf"
+import { BLOCK_SIZE, FIELD_SIZE } from "../utils/conf"
 import PointerElement from "./PointerElement"
 import "./GameElement.css"
 import { Hit } from "../utils/Hit"
@@ -65,7 +65,7 @@ export default function GameElement() {
 
     return (
         <div className="outside">
-            <svg width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 18} className="game" >
+            <svg width={FIELD_SIZE.width} height={FIELD_SIZE.height} className="game" >
                 <GameFieldElement
                     fieldSet={gameState.fieldSet}
                     fold={fold}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { BLOCK_SIZE, CARD_SIZE, XY } from "../utils/conf"
+import { BLOCK_SIZE, CARD_SIZE, FIELD_SIZE, XY } from "../utils/conf"
 import "./PointerElement.css"
 import { Hit } from "../utils/Hit"
 import HoverElement from "./HoverElement"
@@ -126,7 +126,7 @@ export default function PointerElement(props: Props) {
                 x={offsetX}
                 y={offsetY}
             />
-            <rect x={0} y={0} width={BLOCK_SIZE * 15} height={BLOCK_SIZE * 18} fill="transparent"
+            <rect x={0} y={0} width={FIELD_SIZE.width} height={FIELD_SIZE.height} fill="transparent"
                 ref={svg}
             />
         </g >

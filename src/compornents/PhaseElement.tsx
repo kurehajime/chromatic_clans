@@ -3,7 +3,7 @@ import { GameState } from "../utils/GameState"
 import { Line } from "../utils/Line"
 import { Phase } from "../utils/Phase"
 import { Player } from "../utils/Player"
-import { BLOCK_SIZE, XY } from "../utils/conf"
+import { BLOCK_SIZE, FIELD_SIZE, XY } from "../utils/conf"
 import BalloonElement from "./BalloonElement"
 import CrownElement from "./CrownElement"
 
@@ -12,8 +12,8 @@ type Props = {
 }
 export default function PhaseElement(props: Props) {
     const fontSize = BLOCK_SIZE * 2
-    const x = (BLOCK_SIZE * 15) / 2
-    const y = (BLOCK_SIZE * 18) / 2
+    const x = (FIELD_SIZE.width) / 2
+    const y = (FIELD_SIZE.height) / 2
     let text = null
     switch (props.gameState.phase) {
         case Phase.Open:
