@@ -69,6 +69,16 @@ export default function PhaseElement(props: Props) {
             right2.push(i)
         }
     }
+    const win = left + center + right
+    if (props.gameState.phase === Phase.End) {
+        if (win > 0) {
+            text = "YOU WIN"
+        } else if (win < 0) {
+            text = "YOU LOSE"
+        } else {
+            text = "DRAW"
+        }
+    }
 
     return (<g>
         text ?? <text x={x} y={y}

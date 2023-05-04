@@ -28,6 +28,9 @@ export default function GameElement() {
             gameState.phase === Phase.OpenCenter) {
             setGameState(gameState.nextPhase())
         }
+        if (gameState.phase === Phase.End) {
+            setGameState(GameMaster.InitFieldSet())
+        }
     }
     const move = (from: Hit, to: Hit): boolean => {
         if (gameState.turn === Player.Player1) {
