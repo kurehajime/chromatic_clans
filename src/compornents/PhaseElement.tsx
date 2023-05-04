@@ -4,6 +4,7 @@ import { Phase } from "../utils/Phase"
 import { Player } from "../utils/Player"
 import { BLOCK_SIZE } from "../utils/conf"
 import BalloonElement from "./BalloonElement"
+import CrownElement from "./CrownElement"
 
 type Props = {
     gameState: GameState
@@ -74,6 +75,12 @@ export default function PhaseElement(props: Props) {
                 player={Player.Player2}
                 gameState={props.gameState}
             ></BalloonElement>
+        }
+        {
+            <CrownElement
+                x={BLOCK_SIZE * 3}
+                y={BLOCK_SIZE * 2}
+            ></CrownElement>
         }
     </g>)
 }

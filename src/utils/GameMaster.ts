@@ -66,6 +66,7 @@ export class GameMaster {
             Card.Green1,
             Card.Green2,
             Card.Green3,
+            Card.White4,
         ] as Card[];
         for (let i = deck.length - 1; i >= 0; i--) {
             const r = Math.floor(Math.random() * (i + 1))

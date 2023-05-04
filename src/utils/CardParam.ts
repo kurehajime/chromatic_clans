@@ -9,6 +9,7 @@ import swordman_green from "../assets/swordman_green.png"
 import dragon_red from "../assets/dragon_red.png"
 import dragon_blue from "../assets/dragon_blue.png"
 import dragon_green from "../assets/dragon_green.png"
+import giant_white from "../assets/giant_white.png"
 import { Color } from "./Color";
 
 export class CardParam {
@@ -73,6 +74,9 @@ export class CardParam {
             case Card.Green3:
                 image = dragon_green;
                 break;
+            case Card.White4:
+                image = giant_white;
+                break;
         }
         return image;
     }
@@ -88,6 +92,9 @@ export class CardParam {
                 break;
             case Color.Green:
                 colorStr = "#8db800";
+                break;
+            case Color.White:
+                colorStr = "#999999";
                 break;
         }
         return colorStr;
@@ -110,6 +117,9 @@ export class CardParam {
             case Card.Green2:
             case Card.Green3:
                 colorStr = "#8db800";
+                break;
+            case Card.White4:
+                colorStr = "#999999";
                 break;
         }
         return colorStr;

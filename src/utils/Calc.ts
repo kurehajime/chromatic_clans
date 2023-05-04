@@ -21,9 +21,11 @@ export class Calc {
         const player1_red: number[] = [];
         const player1_blue: number[] = [];
         const player1_green: number[] = [];
+        const player1_white: number[] = [];
         const player2_red: number[] = [];
         const player2_blue: number[] = [];
         const player2_green: number[] = [];
+        const player2_white: number[] = [];
         const red1 = line1[2] == Card.Red1 || line2[2] == Card.Red1;
         const blue1 = line1[2] == Card.Blue1 || line2[2] == Card.Blue1;
         const green1 = line1[2] == Card.Green1 || line2[2] == Card.Green1;
@@ -41,6 +43,9 @@ export class Calc {
                 case 3:
                     player1_green.push(red1 ? 1 : score);
                     break;
+                case 4:
+                    player1_white.push(score);
+                    break;
             }
         }
         for (const c of line2) {
@@ -56,12 +61,16 @@ export class Calc {
                 case 3:
                     player2_green.push(red1 ? 1 : score);
                     break;
+                case 4:
+                    player2_white.push(score);
+                    break;
             }
         }
         const points1 = [
             { array: player1_red, color: Color.Red, point: Calc.sum(player1_red) } as Score,
             { array: player1_blue, color: Color.Blue, point: Calc.sum(player1_blue) } as Score,
             { array: player1_green, color: Color.Green, point: Calc.sum(player1_green) } as Score,
+            { array: player1_white, color: Color.White, point: Calc.sum(player1_white) } as Score,
         ] as Score[];
         let max1 = points1[0] as Score;
         for (const obj of points1) {
@@ -73,6 +82,7 @@ export class Calc {
             { array: player2_red, color: Color.Red, point: Calc.sum(player2_red) } as Score,
             { array: player2_blue, color: Color.Blue, point: Calc.sum(player2_blue) } as Score,
             { array: player2_green, color: Color.Green, point: Calc.sum(player2_green) } as Score,
+            { array: player2_white, color: Color.White, point: Calc.sum(player2_white) } as Score,
         ] as Score[];
         let max2 = points2[0] as Score;
         for (const obj of points2) {
