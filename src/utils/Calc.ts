@@ -103,7 +103,8 @@ export class Calc {
         const green2 = line1[2] == Card.Green2 || line2[2] == Card.Green2;
         const [player1, player2] = Calc.CalcMaxScore(line1, line2);
 
-        let point = player1.point - player2.point;
+        const vec = player1.point - player2.point;
+        let point = vec === 0 ? 0 : vec > 0 ? 1 : -1;
         if (line1[2] == Card.Red2 && !green2) {
             point *= 2;
         }

@@ -19,7 +19,7 @@ export class CardParam {
         switch (card) {
             case Card.Red1:
                 cardText1 = "一番上にある時、";
-                cardText2 = "この列の青を１にする";
+                cardText2 = "この列の緑を１にする";
                 break;
             case Card.Red2:
                 cardText1 = "一番上にある時、";
