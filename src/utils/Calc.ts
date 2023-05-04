@@ -1,5 +1,12 @@
 import { Card } from "./Card";
+import { Color } from "./Color";
 import { Field } from "./Field";
+
+type Score = {
+    array: number[];
+    color: Color;
+    point: number;
+}
 
 export class Calc {
 
@@ -10,14 +17,13 @@ export class Calc {
         return left + center + right;
     }
 
-
-    public static CalcLinePoint(line1: Card[], line2: Card[]): [number, number] {
-        let player1_red = 0;
-        let player1_blue = 0;
-        let player1_green = 0;
-        let player2_red = 0;
-        let player2_blue = 0;
-        let player2_green = 0;
+    public static CalcMaxScore(line1: Card[], line2: Card[]): [Score, Score] {
+        const player1_red: number[] = [];
+        const player1_blue: number[] = [];
+        const player1_green: number[] = [];
+        const player2_red: number[] = [];
+        const player2_blue: number[] = [];
+        const player2_green: number[] = [];
         const red1 = line1[2] == Card.Red1 || line2[2] == Card.Red1;
         const blue1 = line1[2] == Card.Blue1 || line2[2] == Card.Blue1;
         const green1 = line1[2] == Card.Green1 || line2[2] == Card.Green1;
@@ -27,13 +33,13 @@ export class Calc {
             const score = c % 10;
             switch (color) {
                 case 1:
-                    player1_red += blue1 ? 1 : score;
+                    player1_red.push(blue1 ? 1 : score);
                     break;
                 case 2:
-                    player1_blue += green1 ? 1 : score;
+                    player1_blue.push(green1 ? 1 : score);
                     break;
                 case 3:
-                    player1_green += red1 ? 1 : score;
+                    player1_green.push(red1 ? 1 : score);
                     break;
             }
         }
@@ -42,24 +48,52 @@ export class Calc {
             const score = c % 10;
             switch (color) {
                 case 1:
-                    player2_red += blue1 ? 1 : score;
+                    player2_red.push(blue1 ? 1 : score);
                     break;
                 case 2:
-                    player2_blue += green1 ? 1 : score;
+                    player2_blue.push(green1 ? 1 : score);
                     break;
                 case 3:
-                    player2_green += red1 ? 1 : score;
+                    player2_green.push(red1 ? 1 : score);
                     break;
             }
         }
-
-        return [Math.max(player1_red, player1_blue, player1_green), Math.max(player2_red, player2_blue, player2_green)]
+        const points1 = [
+            { array: player1_red, color: Color.Red, point: Calc.sum(player1_red) } as Score,
+            { array: player1_blue, color: Color.Blue, point: Calc.sum(player1_blue) } as Score,
+            { array: player1_green, color: Color.Green, point: Calc.sum(player1_green) } as Score,
+        ] as Score[];
+        let max1 = points1[0] as Score;
+        for (const obj of points1) {
+            if (obj.point > max1.point) {
+                max1 = obj;
+            }
+        }
+        const points2 = [
+            { array: player2_red, color: Color.Red, point: Calc.sum(player2_red) } as Score,
+            { array: player2_blue, color: Color.Blue, point: Calc.sum(player2_blue) } as Score,
+            { array: player2_green, color: Color.Green, point: Calc.sum(player2_green) } as Score,
+        ] as Score[];
+        let max2 = points2[0] as Score;
+        for (const obj of points2) {
+            if (obj.point > max2.point) {
+                max2 = obj;
+            }
+        }
+        return [max1, max2];
     }
+
+    public static sum(points: number[]): number {
+        return points.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue;
+        }, 0);
+    }
+
     public static CalcLine(line1: Card[], line2: Card[]): number {
         const green2 = line1[2] == Card.Green2 || line2[2] == Card.Green2;
-        const [player1, player2] = Calc.CalcLinePoint(line1, line2);
+        const [player1, player2] = Calc.CalcMaxScore(line1, line2);
 
-        let point = player1 - player2;
+        let point = player1.point - player2.point;
         if (line1[2] == Card.Red2 && !green2) {
             point *= 2;
         }

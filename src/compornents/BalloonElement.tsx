@@ -14,6 +14,9 @@ export default function BalloonElement(props: Props) {
     let x = BLOCK_SIZE * 3
     let y = BLOCK_SIZE * 2 + (props.player === Player.Player1 ? 0 : BLOCK_SIZE * -3)
     let card: Card | undefined = undefined
+    const cardText1 = CardParam.getDescriptions(card)[0];
+    const cardText2 = CardParam.getDescriptions(card)[1];
+
     if (props.player === Player.Player1 && props.line === Line.Left) {
         x += XY.player1LeftX
         y += XY.player1LeftY
