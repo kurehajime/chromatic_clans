@@ -1,24 +1,22 @@
 import { useEffect, useRef, useState } from "react"
-import { BLOCK_SIZE, CARD_SIZE, FIELD_SIZE, XY, XY2 } from "../utils/conf"
+import { CARD_SIZE, FIELD_SIZE, XY, XY2 } from "../utils/conf"
 import "./PointerElement.css"
 import { Hit } from "../utils/Hit"
 import HoverElement from "./HoverElement"
 import { Card } from "../utils/Card"
 import { GameState } from "../utils/GameState"
 import { Player } from "../utils/Player"
-import ZoomElement from "./ZoomElement"
-import { Phase } from "../utils/Phase"
 type Props = {
     gameState: GameState
     select: (hit: Hit) => void
     move: (from: Hit, to: Hit) => boolean
     fold: Hit
+    changeZoom(card: Card | undefined): void
 }
 export default function PointerElement(props: Props) {
     const svg = useRef<SVGRectElement>(null)
     const [offsetX, setOffsetX] = useState<number>(0)
     const [offsetY, setOffsetY] = useState<number>(0)
-    const [zoom, setZoom] = useState<Card | undefined>(undefined)
     let hover: Card | undefined = undefined
     switch (props.fold) {
         case Hit.player1Hand1:
@@ -78,7 +76,7 @@ export default function PointerElement(props: Props) {
 
     const zoomCard = (x: number, y: number) => {
         if (!props.fold) {
-            setZoom(hitHoverCard(x, y))
+            props.changeZoom(hitHoverCard(x, y))
         }
     }
     const hitCard = (x: number, y: number): Hit => {
@@ -191,14 +189,6 @@ export default function PointerElement(props: Props) {
             <rect x={0} y={0} width={FIELD_SIZE.width} height={FIELD_SIZE.height} fill="transparent"
                 ref={svg}
             />
-            {
-                zoom && props.gameState.phase === Phase.Playing && <ZoomElement
-                    x={BLOCK_SIZE * 10}
-                    y={BLOCK_SIZE * 6}
-                    card={zoom}
-                    player={props.gameState.turn}
-                ></ZoomElement>
-            }
         </g >
     )
 }

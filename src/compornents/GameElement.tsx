@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import GameFieldElement from "./GameFieldElement"
 import { GameMaster } from "../utils/GameMaster"
-import { FIELD_SIZE } from "../utils/conf"
+import { BLOCK_SIZE, FIELD_SIZE } from "../utils/conf"
 import PointerElement from "./PointerElement"
 import "./GameElement.css"
 import { Hit } from "../utils/Hit"
@@ -11,10 +11,13 @@ import { Com } from "../utils/Com"
 import { Line } from "../utils/Line"
 import PhaseElement from "./PhaseElement"
 import { Phase } from "../utils/Phase"
+import { Card } from "../utils/Card"
+import ZoomElement from "./ZoomElement"
 
 export default function GameElement() {
     const [gameState, setGameState] = useState<GameState>(GameMaster.InitFieldSet())
     const [fold, setFold] = useState<Hit>(Hit.none)
+    const [zoom, setZoom] = useState<Card | undefined>(undefined)
 
     const select = (hit: Hit) => {
         if (gameState.canSelect(hit)) {
@@ -71,12 +74,21 @@ export default function GameElement() {
                     fold={fold}
                     phase={gameState.phase}
                 ></GameFieldElement>
+                {
+                    zoom && gameState.phase === Phase.Playing && <ZoomElement
+                        x={BLOCK_SIZE * 10}
+                        y={BLOCK_SIZE * 6}
+                        card={zoom}
+                        player={gameState.turn}
+                    ></ZoomElement>
+                }
                 <PhaseElement gameState={gameState}></PhaseElement>
                 <PointerElement
                     gameState={gameState}
                     select={select}
                     move={move}
                     fold={fold}
+                    changeZoom={(z: Card | undefined) => { setZoom(z) }}
                 ></PointerElement>
             </svg>
         </div>
