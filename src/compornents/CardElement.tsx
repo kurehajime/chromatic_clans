@@ -37,7 +37,7 @@ export default function CardElement(props: Props) {
                     fill={colorStr}
                     stroke="white"
                     strokeOpacity="0.1"
-                    rx="3" ry="3"
+                    rx={BLOCK_SIZE * 0.1} ry={BLOCK_SIZE * 0.1}
                 />
             }
             {
