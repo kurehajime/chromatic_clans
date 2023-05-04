@@ -11,14 +11,18 @@ type Props = {
     stack?: number
     hidden?: boolean
     halfOpen?: boolean
+    zoom?: boolean
 }
 export default function CardElement(props: Props) {
+    const ZOOM_BLOCK_SIZE = BLOCK_SIZE * (props.zoom ? 2 : 1);
+    const CARD_WIDTH = CARD_SIZE.width * (props.zoom ? 2 : 1);
+    const CARD_HEIGHT = CARD_SIZE.height * (props.zoom ? 2 : 1);
     const stack = props.stack ?? 0;
     const stackVec = props.player === Player.Player1 ? 1 : -1;
-    const x = props.x + stackVec * (stack * BLOCK_SIZE * 0.1);
-    const y = props.y + stackVec * (stack * BLOCK_SIZE * 0.6);
-    const rotateX = x + CARD_SIZE.width / 2;
-    const rotateY = y + CARD_SIZE.height / 2;
+    const x = props.x + stackVec * (stack * ZOOM_BLOCK_SIZE * 0.1);
+    const y = props.y + stackVec * (stack * ZOOM_BLOCK_SIZE * 0.6);
+    const rotateX = x + CARD_WIDTH / 2;
+    const rotateY = y + CARD_HEIGHT / 2;
     const number = props.card ? props.card % 10 : 0;
     const colorStr = CardParam.getColorStr(props.card)
     const cardText1 = CardParam.getDescriptions(props.card)[0];
@@ -33,44 +37,44 @@ export default function CardElement(props: Props) {
     return (
         <g transform={rotate} >
             {
-                showFrame && <rect x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
+                showFrame && <rect x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     fill={colorStr}
                     stroke="white"
                     strokeOpacity="0.1"
-                    rx={BLOCK_SIZE * 0.1} ry={BLOCK_SIZE * 0.1}
+                    rx={ZOOM_BLOCK_SIZE * 0.1} ry={ZOOM_BLOCK_SIZE * 0.1}
                 />
             }
             {
                 props.card && <rect
-                    x={x + BLOCK_SIZE * 0.1}
-                    y={y + BLOCK_SIZE * 1.8}
-                    width={BLOCK_SIZE * 1.8}
-                    height={BLOCK_SIZE * 0.9}
+                    x={x + ZOOM_BLOCK_SIZE * 0.1}
+                    y={y + ZOOM_BLOCK_SIZE * 1.8}
+                    width={ZOOM_BLOCK_SIZE * 1.8}
+                    height={ZOOM_BLOCK_SIZE * 0.9}
                     fill="black"
                     strokeOpacity="0.1"
                     stroke="black"
                 ></rect>
             }
             {
-                props.card && <image href={image} x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 0.5} width={BLOCK_SIZE * 1.8} height={BLOCK_SIZE * 1.8} />
+                props.card && <image href={image} x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.5} width={ZOOM_BLOCK_SIZE * 1.8} height={ZOOM_BLOCK_SIZE * 1.8} />
             }
             {
-                <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 0.4}
-                    fontSize={BLOCK_SIZE * 0.5}
+                <text x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.4}
+                    fontSize={ZOOM_BLOCK_SIZE * 0.5}
                     fontWeight={600}
                     fill="white"
                 >{number > 0 ? number : ""}</text>
             }
-            <text x={x + BLOCK_SIZE * 0.2} y={y + BLOCK_SIZE * 2.4} fontSize={BLOCK_SIZE * 0.2} fill="white">{cardText1}</text>
-            <text x={x + BLOCK_SIZE * 0.2} y={y + BLOCK_SIZE * 2.6} fontSize={BLOCK_SIZE * 0.2} fill="white">{cardText2}</text>
+            <text x={x + ZOOM_BLOCK_SIZE * 0.2} y={y + ZOOM_BLOCK_SIZE * 2.4} fontSize={ZOOM_BLOCK_SIZE * 0.2} fill="white">{cardText1}</text>
+            <text x={x + ZOOM_BLOCK_SIZE * 0.2} y={y + ZOOM_BLOCK_SIZE * 2.6} fontSize={ZOOM_BLOCK_SIZE * 0.2} fill="white">{cardText2}</text>
             {
-                props.hidden && <image href={reverse} x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
+                props.hidden && <image href={reverse} x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     clipPath={`inset(0px 0px 0px 0px round 3px)`}
                     opacity={props.halfOpen ? 0.5 : 1}
                 />
             }
             {
-                props.hidden && <rect x={x} y={y} width={CARD_SIZE.width} height={CARD_SIZE.height}
+                props.hidden && <rect x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     fill="transparent"
                     stroke="black"
                     rx="3" ry="3"

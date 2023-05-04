@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import GameFieldElement from "./GameFieldElement"
 import { GameMaster } from "../utils/GameMaster"
-import { BLOCK_SIZE, FIELD_SIZE } from "../utils/conf"
+import { FIELD_SIZE } from "../utils/conf"
 import PointerElement from "./PointerElement"
 import "./GameElement.css"
 import { Hit } from "../utils/Hit"

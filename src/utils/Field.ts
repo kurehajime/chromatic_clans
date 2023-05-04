@@ -35,6 +35,25 @@ export class Field {
         return undefined
     }
 
+    public getLeft(i: number): Card | undefined {
+        if (this.Left.length > i) {
+            return this.Left[i]
+        }
+        return undefined
+    }
+    public getCenter(i: number): Card | undefined {
+        if (this.Center.length > i) {
+            return this.Center[i]
+        }
+        return undefined
+    }
+    public getRight(i: number): Card | undefined {
+        if (this.Right.length > i) {
+            return this.Right[i]
+        }
+        return undefined
+    }
+
     public Clone(): Field {
         return new Field(
             this.Deck.slice(),

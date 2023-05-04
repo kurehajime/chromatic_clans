@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react"
-import { BLOCK_SIZE, CARD_SIZE, FIELD_SIZE, XY } from "../utils/conf"
+import { BLOCK_SIZE, CARD_SIZE, FIELD_SIZE, XY, XY2 } from "../utils/conf"
 import "./PointerElement.css"
 import { Hit } from "../utils/Hit"
 import HoverElement from "./HoverElement"
 import { Card } from "../utils/Card"
 import { GameState } from "../utils/GameState"
 import { Player } from "../utils/Player"
+import ZoomElement from "./ZoomElement"
+import { Phase } from "../utils/Phase"
 type Props = {
     gameState: GameState
     select: (hit: Hit) => void
@@ -16,6 +18,7 @@ export default function PointerElement(props: Props) {
     const svg = useRef<SVGRectElement>(null)
     const [offsetX, setOffsetX] = useState<number>(0)
     const [offsetY, setOffsetY] = useState<number>(0)
+    const [zoom, setZoom] = useState<Card | undefined>(undefined)
     let hover: Card | undefined = undefined
     switch (props.fold) {
         case Hit.player1Hand1:
@@ -44,6 +47,7 @@ export default function PointerElement(props: Props) {
         const e = event as PointerEvent
         setOffsetX(e.offsetX)
         setOffsetY(e.offsetY)
+        zoomCard(e.offsetX, e.offsetY)
     }
     const mouseDown = (event: Event) => {
         const e = event as PointerEvent
@@ -63,13 +67,20 @@ export default function PointerElement(props: Props) {
 
         setOffsetX(e.offsetX)
         setOffsetY(e.offsetY)
+        zoomCard(e.offsetX, e.offsetY)
         e.preventDefault()
     }
     const mouseUp = (event: Event) => {
         const e = event as PointerEvent
+        zoomCard(e.offsetX, e.offsetY)
         e.preventDefault()
     }
 
+    const zoomCard = (x: number, y: number) => {
+        if (!props.fold) {
+            setZoom(hitHoverCard(x, y))
+        }
+    }
     const hitCard = (x: number, y: number): Hit => {
         switch (true) {
             case hit(x, y, XY.player1Hand1x, XY.player1Hand1y, CARD_SIZE.width, CARD_SIZE.height):
@@ -99,6 +110,56 @@ export default function PointerElement(props: Props) {
         return Hit.none;
     }
 
+    const hitHoverCard = (x: number, y: number): Card | undefined => {
+        switch (true) {
+            case hit(x, y, XY.player1Hand1x, XY.player1Hand1y, CARD_SIZE.width, CARD_SIZE.height):
+                return props.gameState.fieldSet.Field1.Hand1();
+            case hit(x, y, XY.player1Hand2x, XY.player1Hand2y, CARD_SIZE.width, CARD_SIZE.height):
+                return props.gameState.fieldSet.Field1.Hand2();
+            case hit(x, y, XY.player1Hand3x, XY.player1Hand3y, CARD_SIZE.width, CARD_SIZE.height):
+                return props.gameState.fieldSet.Field1.Hand3();
+            case hit(x, y, XY2.player1LeftX3, XY2.player1LeftY3, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getLeft(2) !== undefined:
+                return props.gameState.fieldSet.Field1.getLeft(2);
+            case hit(x, y, XY2.player1LeftX2, XY2.player1LeftY2, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getLeft(1) !== undefined:
+                return props.gameState.fieldSet.Field1.getLeft(1);
+            case hit(x, y, XY2.player1LeftX1, XY2.player1LeftY1, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getLeft(0) !== undefined:
+                return props.gameState.fieldSet.Field1.getLeft(0);
+            case hit(x, y, XY2.player1CenterX3, XY2.player1CenterY3, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getCenter(2) !== undefined:
+                return props.gameState.fieldSet.Field1.getCenter(2);
+            case hit(x, y, XY2.player1CenterX2, XY2.player1CenterY2, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getCenter(1) !== undefined:
+                return props.gameState.fieldSet.Field1.getCenter(1);
+            case hit(x, y, XY2.player1CenterX1, XY2.player1CenterY1, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getCenter(0) !== undefined:
+                return props.gameState.fieldSet.Field1.getCenter(0);
+            case hit(x, y, XY2.player1RightX3, XY2.player1RightY3, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getRight(2) !== undefined:
+                return props.gameState.fieldSet.Field1.getRight(2);
+            case hit(x, y, XY2.player1RightX2, XY2.player1RightY2, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getRight(1) !== undefined:
+                return props.gameState.fieldSet.Field1.getRight(1);
+            case hit(x, y, XY2.player1RightX1, XY2.player1RightY1, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field1.getRight(0) !== undefined:
+                return props.gameState.fieldSet.Field1.getRight(0);
+            case hit(x, y, XY2.player2LeftX3, XY2.player2LeftY3, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getLeft(2) !== undefined:
+                return undefined
+            case hit(x, y, XY2.player2LeftX2, XY2.player2LeftY2, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getLeft(1) !== undefined:
+                return props.gameState.fieldSet.Field2.getLeft(1);
+            case hit(x, y, XY2.player2LeftX1, XY2.player2LeftY1, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getLeft(0) !== undefined:
+                return props.gameState.fieldSet.Field2.getLeft(0);
+            case hit(x, y, XY2.player2CenterX3, XY2.player2CenterY3, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getCenter(2) !== undefined:
+                return undefined
+            case hit(x, y, XY2.player2CenterX2, XY2.player2CenterY2, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getCenter(1) !== undefined:
+                return props.gameState.fieldSet.Field2.getCenter(1);
+            case hit(x, y, XY2.player2CenterX1, XY2.player2CenterY1, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getCenter(0) !== undefined:
+                return props.gameState.fieldSet.Field2.getCenter(0);
+            case hit(x, y, XY2.player2RightX3, XY2.player2RightY3, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getRight(2) !== undefined:
+                return undefined
+            case hit(x, y, XY2.player2RightX2, XY2.player2RightY2, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getRight(1) !== undefined:
+                return props.gameState.fieldSet.Field2.getRight(1);
+            case hit(x, y, XY2.player2RightX1, XY2.player2RightY1, CARD_SIZE.width, CARD_SIZE.height) && props.gameState.fieldSet.Field2.getRight(0) !== undefined:
+                return props.gameState.fieldSet.Field2.getRight(0);
+            default:
+                break;
+        }
+        return undefined;
+    }
+
     const hit = (x: number, y: number, targetX: number, targetY: number, targetWidth: number, targetHeight: number): boolean => {
         if (x < targetX) return false;
         if (y < targetY) return false;
@@ -118,6 +179,7 @@ export default function PointerElement(props: Props) {
             current?.removeEventListener("pointermove", mouseMove)
         }
     })
+
     return (
         <g>
             <HoverElement
@@ -129,6 +191,14 @@ export default function PointerElement(props: Props) {
             <rect x={0} y={0} width={FIELD_SIZE.width} height={FIELD_SIZE.height} fill="transparent"
                 ref={svg}
             />
+            {
+                zoom && props.gameState.phase === Phase.Playing && <ZoomElement
+                    x={BLOCK_SIZE * 10}
+                    y={BLOCK_SIZE * 6}
+                    card={zoom}
+                    player={props.gameState.turn}
+                ></ZoomElement>
+            }
         </g >
     )
 }
