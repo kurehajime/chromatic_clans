@@ -14,6 +14,7 @@ import { Phase } from "../utils/Phase"
 import { Card } from "../utils/Card"
 import ZoomElement from "./ZoomElement"
 import RuleElement from "./RuleElement"
+import TitleElement from "./TitleElement"
 
 export default function GameElement() {
     const [gameState, setGameState] = useState<GameState>(GameMaster.InitFieldSet())
@@ -74,6 +75,7 @@ export default function GameElement() {
                 fold={fold}
                 phase={gameState.phase}
             ></GameFieldElement>
+            <TitleElement x={BLOCK_SIZE * 10.5} y={BLOCK_SIZE * 1}></TitleElement>
             <PointerElement
                 gameState={gameState}
                 select={select}
