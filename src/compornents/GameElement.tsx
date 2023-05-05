@@ -16,12 +16,33 @@ import ZoomElement from "./ZoomElement"
 import RuleElement from "./RuleElement"
 import TitleElement from "./TitleElement"
 import LevelElement from "./LevelElement"
+import { Calc } from "../utils/Calc"
+import { useCookies } from "react-cookie"
 
 export default function GameElement() {
     const [gameState, setGameState] = useState<GameState>(GameMaster.InitFieldSet())
     const [fold, setFold] = useState<Hit>(Hit.none)
     const [zoom, setZoom] = useState<Card | undefined>(undefined)
-    const [level, setLevel] = useState<number>(1)
+    const [level, setLevel] = useState<number>(0)
+    const [level0, setLevel0] = useCookies(["level0"]);
+    const [level1, setLevel1] = useCookies(["level1"]);
+    const [level2, setLevel2] = useCookies(["level2"]);
+    const [wins, setWins] = useState<number[]>([
+        tryInt(level0),
+        tryInt(level1),
+        tryInt(level2)])
+    const [winsShow, setWinsShow] = useState<number[]>(wins)
+
+    function tryInt(s: unknown): number {
+        if (s === undefined) {
+            return 0
+        }
+        const i = parseInt(s as string)
+        if (isNaN(i)) {
+            return 0
+        }
+        return i
+    }
 
     const select = (hit: Hit) => {
         if (gameState.canSelect(hit)) {
@@ -29,11 +50,33 @@ export default function GameElement() {
         } else {
             setFold(Hit.none)
         }
-        if (gameState.phase === Phase.Open ||
-            gameState.phase === Phase.OpenLeft ||
-            gameState.phase === Phase.OpenRight ||
+        if (gameState.phase === Phase.OpenLeft ||
             gameState.phase === Phase.OpenCenter) {
             setGameState(gameState.nextPhase())
+        }
+        if (gameState.phase === Phase.Open) {
+            const plus = Calc.CalcWin(gameState.fieldSet.Field1, gameState.fieldSet.Field2)
+            const ww = [...wins]
+            ww[level] = Math.max(ww[level] + plus, 0)
+            switch (level) {
+                case 0:
+                    setLevel0("level0", ww[level])
+                    break;
+                case 1:
+                    setLevel1("level1", ww[level])
+                    break;
+                case 2:
+                    setLevel2("level2", ww[level])
+                    break;
+                default:
+                    break;
+            }
+            setWins(ww)
+            setGameState(gameState.nextPhase())
+        }
+        if (gameState.phase === Phase.OpenRight) {
+            setGameState(gameState.nextPhase())
+            setWinsShow(wins)
         }
         if (gameState.phase === Phase.End) {
             setGameState(GameMaster.InitFieldSet())
@@ -54,7 +97,7 @@ export default function GameElement() {
         let ignore = false;
         async function think() {
             if (!ignore && gameState.turn === Player.Player2) {
-                const depth = level === 1 ? 30 : level === 2 ? 100 : 1000;
+                const depth = level === 1 ? 10 : level === 2 ? 100 : 1000;
                 const action = Com.getBestAction(depth, gameState.fieldSet)
                 const from = action.handIndex === 0 ? Hit.player2Hand1 : action.handIndex === 1 ? Hit.player2Hand2 : Hit.player2Hand3;
                 const to = action.line === Line.Left ? Hit.Left : action.line === Line.Center ? Hit.Center : Hit.Right;
@@ -102,6 +145,7 @@ export default function GameElement() {
                     setGameState(GameMaster.InitFieldSet())
                 }}
                 level={level}
+                wins={winsShow}
             ></LevelElement>
             <PhaseElement gameState={gameState}></PhaseElement>
         </svg>
