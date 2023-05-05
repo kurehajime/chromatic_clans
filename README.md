@@ -1,3 +1,3 @@
-# Chromatic Crew
+# Chromatic Clans
 
-https://kurehajime.github.io/chromatic_crew/
+https://kurehajime.github.io/chromatic_clans/
