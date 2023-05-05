@@ -75,16 +75,18 @@ export default function BalloonElement(props: Props) {
             fill="white"
         >{point.array.join(" + ") + " = " + point.point}</text>
         <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 1.2}
-            fontSize={BLOCK_SIZE * 0.4}
+            fontSize={BLOCK_SIZE * 0.3}
             fontWeight={600}
             fill="white"
             textDecoration={denial ? "line-through" : "none"}
+            fontFamily="Arial, Helvetica"
         >{cardText1}</text>
         <text x={x + BLOCK_SIZE * 0.1} y={y + BLOCK_SIZE * 1.6}
-            fontSize={BLOCK_SIZE * 0.4}
+            fontSize={BLOCK_SIZE * 0.3}
             fontWeight={600}
             fill="white"
             textDecoration={denial ? "line-through" : "none"}
+            fontFamily="Arial, Helvetica"
         >{cardText2}</text>
     </g>)
 }
