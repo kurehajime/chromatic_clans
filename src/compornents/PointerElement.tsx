@@ -49,6 +49,7 @@ export default function PointerElement(props: Props) {
         setOffsetX(e.offsetX)
         setOffsetY(e.offsetY)
         zoomCard(e.offsetX, e.offsetY)
+        e.preventDefault()
     }
     const mouseDown = (event: Event) => {
         const e = event as PointerEvent
@@ -79,6 +80,7 @@ export default function PointerElement(props: Props) {
         const x = e.offsetX
         const y = e.offsetY
         if (Math.sqrt((x - mouseStartX) ** 2 + (y - mouseStartY) ** 2) < 25) {
+            e.preventDefault()
             return;
         }
 
