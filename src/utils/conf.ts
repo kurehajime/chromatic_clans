@@ -1,4 +1,4 @@
-export const BLOCK_SIZE = 40;
+export const BLOCK_SIZE = 48;
 export const XY = {
     player1Hand1x: BLOCK_SIZE * 1,
     player1Hand1y: BLOCK_SIZE * 12,
