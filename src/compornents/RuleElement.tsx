@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { BLOCK_SIZE } from "../utils/conf"
 import "./RuleElement.css"
+import { t } from "i18next"
 
 type Props = {
     x: number
@@ -10,15 +11,15 @@ type Props = {
 export default function RuleElement(props: Props) {
     const [show, setShow] = useState(false)
     let rotate = ""
-    const title = "ルール説明"
+    const title = t("rule_title")
     const rule = `
-- Cromatic Clansは10枚のデッキで戦うカードゲームです。
-- 交互にカードを出し合います。
-- カードは3枚まで重ねることができます。
-- 3枚目のカードは裏向きで出します。
-- カードを出し終わったら、列ごとにカードの大小を比較します。
-- 色ごとの合計で最も大きい数字の色で比較します。
-- 各列でより多く勝利したプレイヤーの勝利です。`
+${t("rule_description_1")}
+${t("rule_description_2")}
+${t("rule_description_3")}
+${t("rule_description_4")}
+${t("rule_description_5")}
+${t("rule_description_6")}
+${t("rule_description_7")}`
     rotate = `rotate(-30,${BLOCK_SIZE * 10},${-BLOCK_SIZE * 15})`
 
     const toggle = () => {
@@ -43,7 +44,7 @@ export default function RuleElement(props: Props) {
             />
             <text x={props.x} y={props.y + BLOCK_SIZE * 0.3} fontSize={BLOCK_SIZE * 0.5}
                 fill="#6a1917"
-                fontFamily="serif"
+                fontFamily="Oswald,serif"
             >{title}</text>
             {
                 rule.split("\n").map((line, i) => {
@@ -51,7 +52,7 @@ export default function RuleElement(props: Props) {
                         <text x={props.x} y={props.y + BLOCK_SIZE * 0.55 * (i + 1)} fontSize={BLOCK_SIZE * 0.4}
                             fill="#6a1917"
                             key={i}
-                            fontFamily="serif"
+                            fontFamily="Oswald,serif"
                         >{line}</text>
                     )
                 })

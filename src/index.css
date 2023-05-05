@@ -30,3 +30,11 @@ body {
   font-display: block;
   src: url('./assets/Piazzolla600.woff2') format('woff2');
 }
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+  src: url('./assets/oswald300.woff2') format('woff2');
+}

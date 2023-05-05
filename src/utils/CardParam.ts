@@ -11,6 +11,7 @@ import dragon_blue from "../assets/dragon_blue.webp"
 import dragon_green from "../assets/dragon_green.webp"
 import giant_white from "../assets/giant_white.webp"
 import { Color } from "./Color";
+import { t } from "i18next";
 
 export class CardParam {
     public static getDescriptions(card: Card | undefined): [string, string] {
@@ -18,28 +19,28 @@ export class CardParam {
         let cardText2 = "";
         switch (card) {
             case Card.Red1:
-                cardText1 = "一番上にある時、";
-                cardText2 = "この列の緑を１にする";
+                cardText1 = t("red_1a");
+                cardText2 = t("red_1b");
                 break;
             case Card.Red2:
-                cardText1 = "一番上にある時、";
-                cardText2 = "この列の勝点は２倍";
+                cardText1 = t("red_2a");
+                cardText2 = t("red_2b");
                 break;
             case Card.Blue1:
-                cardText1 = "一番上にある時、";
-                cardText2 = "この列の赤を１にする";
+                cardText1 = t("blue_1a");
+                cardText2 = t("blue_1b");
                 break;
             case Card.Blue2:
-                cardText1 = "一番上にある時、";
-                cardText2 = "この列の勝敗を逆転";
+                cardText1 = t("blue_2a");
+                cardText2 = t("blue_2b");
                 break;
             case Card.Green1:
-                cardText1 = "一番上にある時、";
-                cardText2 = "この列の青を１にする";
+                cardText1 = t("green_1a");
+                cardText2 = t("green_1b");
                 break;
             case Card.Green2:
-                cardText1 = "一番上にある時、この";
-                cardText2 = "列の１の効果は無効";
+                cardText1 = t("green_2a");
+                cardText2 = t("green_2b");
                 break;
         }
         return [cardText1, cardText2]
