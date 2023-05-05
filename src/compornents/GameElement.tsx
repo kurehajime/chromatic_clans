@@ -15,11 +15,13 @@ import { Card } from "../utils/Card"
 import ZoomElement from "./ZoomElement"
 import RuleElement from "./RuleElement"
 import TitleElement from "./TitleElement"
+import LevelElement from "./LevelElement"
 
 export default function GameElement() {
     const [gameState, setGameState] = useState<GameState>(GameMaster.InitFieldSet())
     const [fold, setFold] = useState<Hit>(Hit.none)
     const [zoom, setZoom] = useState<Card | undefined>(undefined)
+    const [level, setLevel] = useState<number>(1)
 
     const select = (hit: Hit) => {
         if (gameState.canSelect(hit)) {
@@ -52,7 +54,8 @@ export default function GameElement() {
         let ignore = false;
         async function think() {
             if (!ignore && gameState.turn === Player.Player2) {
-                const action = Com.getBestAction(100, gameState.fieldSet)
+                const depth = level === 1 ? 30 : level === 2 ? 100 : 1000;
+                const action = Com.getBestAction(depth, gameState.fieldSet)
                 const from = action.handIndex === 0 ? Hit.player2Hand1 : action.handIndex === 1 ? Hit.player2Hand2 : Hit.player2Hand3;
                 const to = action.line === Line.Left ? Hit.Left : action.line === Line.Center ? Hit.Center : Hit.Right;
                 const next = gameState.summon(from, to);
@@ -65,7 +68,7 @@ export default function GameElement() {
         return () => {
             ignore = true;
         };
-    }, [gameState])
+    }, [gameState, level])
 
 
     return (
@@ -93,6 +96,13 @@ export default function GameElement() {
                     player={gameState.turn}
                 ></ZoomElement>
             }
+            <LevelElement
+                changeLevel={(l: number) => {
+                    setLevel(l)
+                    setGameState(GameMaster.InitFieldSet())
+                }}
+                level={level}
+            ></LevelElement>
             <PhaseElement gameState={gameState}></PhaseElement>
         </svg>
     )
