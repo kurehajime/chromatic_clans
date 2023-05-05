@@ -5,3 +5,8 @@
 .rule_close {
     filter: drop-shadow(2px 2px 2px #000);
 }
+
+.easeIn {
+    transition: all ease-in-out 0.2s;
+    -webkit-transition: -webkit-transform all ease-in-out 0.2s;
+}

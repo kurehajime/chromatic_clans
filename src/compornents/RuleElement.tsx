@@ -39,7 +39,7 @@ export default function RuleElement(props: Props) {
                 fill="#e6bfb2"
                 opacity={0.9}
                 stroke="#6a1917"
-                className={show ? "rule_open" : "rule_close"}
+                className={show ? "rule_open easeIn" : "rule_close easeIn"}
             />
             <text x={props.x} y={props.y + BLOCK_SIZE * 0.3} fontSize={BLOCK_SIZE * 0.5}
                 fill="#6a1917"
