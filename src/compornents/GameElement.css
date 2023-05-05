@@ -1,3 +1,4 @@
 .game {
     touch-action: none;
+    user-select: none;
 }
