@@ -100,21 +100,20 @@ export class Calc {
     }
 
     public static CalcLine(line1: Card[], line2: Card[]): number {
-        const green2 = line1[2] == Card.Green2 || line2[2] == Card.Green2;
         const [player1, player2] = Calc.CalcMaxScore(line1, line2);
 
         const vec = player1.point - player2.point;
         let point = vec === 0 ? 0 : vec > 0 ? 1 : -1;
-        if (line1[2] == Card.Red2 && !green2) {
+        if (line1[2] == Card.Red2) {
             point *= 2;
         }
-        if (line2[2] == Card.Red2 && !green2) {
+        if (line2[2] == Card.Red2) {
             point *= 2;
         }
-        if (line1[2] == Card.Blue2 && !green2) {
+        if (line1[2] == Card.Blue2) {
             point *= -1;
         }
-        if (line2[2] == Card.Blue2 && !green2) {
+        if (line2[2] == Card.Blue2) {
             point *= -1;
         }
         return point;

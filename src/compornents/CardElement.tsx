@@ -65,8 +65,8 @@ export default function CardElement(props: Props) {
                     fill="white"
                 >{number > 0 ? number : ""}</text>
             }
-            <text x={x + ZOOM_BLOCK_SIZE * 0.2} y={y + ZOOM_BLOCK_SIZE * 2.4} fontSize={ZOOM_BLOCK_SIZE * 0.2} fill="white">{cardText1}</text>
-            <text x={x + ZOOM_BLOCK_SIZE * 0.2} y={y + ZOOM_BLOCK_SIZE * 2.6} fontSize={ZOOM_BLOCK_SIZE * 0.2} fill="white">{cardText2}</text>
+            <text x={x + ZOOM_BLOCK_SIZE * 0.15} y={y + ZOOM_BLOCK_SIZE * 2.4} fontSize={ZOOM_BLOCK_SIZE * 0.2} fill="white">{cardText1}</text>
+            <text x={x + ZOOM_BLOCK_SIZE * 0.15} y={y + ZOOM_BLOCK_SIZE * 2.6} fontSize={ZOOM_BLOCK_SIZE * 0.2} fill="white">{cardText2}</text>
             {
                 props.hidden && <image href={reverse} x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     clipPath={`inset(0px 0px 0px 0px round 3px)`}

@@ -38,8 +38,8 @@ export class CardParam {
                 cardText2 = "この列の青を１にする";
                 break;
             case Card.Green2:
-                cardText1 = "一番上にある時、";
-                cardText2 = "この列の効果は無効";
+                cardText1 = "一番上にある時、この";
+                cardText2 = "列の１の効果は無効";
                 break;
         }
         return [cardText1, cardText2]
