@@ -29,9 +29,11 @@ export default function RuleElement(props: Props) {
             <rect x={props.x - BLOCK_SIZE * 0.5} y={props.y - BLOCK_SIZE * 0.5}
                 width={BLOCK_SIZE * 13}
                 height={BLOCK_SIZE * 0.55 * rule.split("\n").length + BLOCK_SIZE * 1.8}
-                fill="#ffdab9"
-                opacity={0.7} />
-            <text x={props.x} y={props.y + BLOCK_SIZE * 0.2} fontSize={BLOCK_SIZE * 0.5} fill="#6a1917">{title}</text>
+                fill="#e6bfb2"
+                opacity={0.9}
+                stroke="#6a1917"
+            />
+            <text x={props.x} y={props.y + BLOCK_SIZE * 0.3} fontSize={BLOCK_SIZE * 0.5} fill="#6a1917">{title}</text>
             {
                 rule.split("\n").map((line, i) => {
                     return (
