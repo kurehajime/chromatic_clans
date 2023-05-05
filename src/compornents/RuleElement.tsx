@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { BLOCK_SIZE, CARD_SIZE } from "../utils/conf"
+import { BLOCK_SIZE } from "../utils/conf"
 
 type Props = {
     x: number
