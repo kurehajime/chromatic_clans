@@ -68,32 +68,30 @@ export default function GameElement() {
 
 
     return (
-        <div className="outside">
-            <svg width={FIELD_SIZE.width} height={FIELD_SIZE.height} className="game" >
-                <GameFieldElement
-                    fieldSet={gameState.fieldSet}
-                    fold={fold}
-                    phase={gameState.phase}
-                ></GameFieldElement>
-                <PhaseElement gameState={gameState}></PhaseElement>
-                <PointerElement
-                    gameState={gameState}
-                    select={select}
-                    move={move}
-                    fold={fold}
-                    changeZoom={(z: Card | undefined) => { setZoom(z) }}
-                ></PointerElement>
-                <RuleElement x={BLOCK_SIZE * 1.5} y={BLOCK_SIZE * 4}
-                    fold={fold === Hit.none ? false : true}></RuleElement>
-                {
-                    zoom && gameState.phase === Phase.Playing && <ZoomElement
-                        x={BLOCK_SIZE * 10}
-                        y={BLOCK_SIZE * 6}
-                        card={zoom}
-                        player={gameState.turn}
-                    ></ZoomElement>
-                }
-            </svg>
-        </div>
+        <svg width={FIELD_SIZE.width} height={FIELD_SIZE.height} >
+            <GameFieldElement
+                fieldSet={gameState.fieldSet}
+                fold={fold}
+                phase={gameState.phase}
+            ></GameFieldElement>
+            <PhaseElement gameState={gameState}></PhaseElement>
+            <PointerElement
+                gameState={gameState}
+                select={select}
+                move={move}
+                fold={fold}
+                changeZoom={(z: Card | undefined) => { setZoom(z) }}
+            ></PointerElement>
+            <RuleElement x={BLOCK_SIZE * 1.5} y={BLOCK_SIZE * 4}
+                fold={fold === Hit.none ? false : true}></RuleElement>
+            {
+                zoom && gameState.phase === Phase.Playing && <ZoomElement
+                    x={BLOCK_SIZE * 10}
+                    y={BLOCK_SIZE * 6}
+                    card={zoom}
+                    player={gameState.turn}
+                ></ZoomElement>
+            }
+        </svg>
     )
 }
