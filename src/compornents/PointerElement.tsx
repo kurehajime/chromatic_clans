@@ -6,6 +6,7 @@ import HoverElement from "./HoverElement"
 import { Card } from "../utils/Card"
 import { GameState } from "../utils/GameState"
 import { Player } from "../utils/Player"
+import React from "react"
 type Props = {
     gameState: GameState
     select: (hit: Hit) => void
@@ -17,6 +18,8 @@ export default function PointerElement(props: Props) {
     const svg = useRef<SVGRectElement>(null)
     const [offsetX, setOffsetX] = useState<number>(0)
     const [offsetY, setOffsetY] = useState<number>(0)
+    const [mouseStartX, setMouseStartX] = React.useState<number>(0)
+    const [mouseStartY, setMouseStartY] = React.useState<number>(0)
     let hover: Card | undefined = undefined
     switch (props.fold) {
         case Hit.player1Hand1:
@@ -57,6 +60,8 @@ export default function PointerElement(props: Props) {
                 }
                 props.select(Hit.none)
             } else {
+                setMouseStartX(e.offsetX)
+                setMouseStartY(e.offsetY)
                 props.select(hits)
             }
         } else {
@@ -70,6 +75,20 @@ export default function PointerElement(props: Props) {
     }
     const mouseUp = (event: Event) => {
         const e = event as PointerEvent
+
+        const x = e.offsetX
+        const y = e.offsetY
+        if (Math.sqrt((x - mouseStartX) ** 2 + (y - mouseStartY) ** 2) < 25) {
+            return;
+        }
+
+        const hits = hitCard(e.offsetX, e.offsetY)
+        if (props.fold) {
+            if (hits !== Hit.none) {
+                props.move(props.fold, hits)
+            }
+            props.select(Hit.none)
+        }
         zoomCard(e.offsetX, e.offsetY)
         e.preventDefault()
     }
