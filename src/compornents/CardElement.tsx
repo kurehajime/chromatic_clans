@@ -35,7 +35,7 @@ export default function CardElement(props: Props) {
     const showFrame = props.card !== undefined || stack === 0;
 
     return (
-        <g transform={rotate} >
+        <g transform={rotate} opacity={props.zoom ? 0.8 : 1} >
             {
                 showFrame && <rect x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     fill={colorStr}

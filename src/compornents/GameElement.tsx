@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import GameFieldElement from "./GameFieldElement"
 import { GameMaster } from "../utils/GameMaster"
-import { BLOCK_SIZE, FIELD_SIZE } from "../utils/conf"
+import { BLOCK_SIZE, CARD_SIZE, FIELD_SIZE } from "../utils/conf"
 import PointerElement from "./PointerElement"
 import "./GameElement.css"
 import { Hit } from "../utils/Hit"
@@ -13,6 +13,7 @@ import PhaseElement from "./PhaseElement"
 import { Phase } from "../utils/Phase"
 import { Card } from "../utils/Card"
 import ZoomElement from "./ZoomElement"
+import RuleElement from "./RuleElement"
 
 export default function GameElement() {
     const [gameState, setGameState] = useState<GameState>(GameMaster.InitFieldSet())
@@ -74,14 +75,6 @@ export default function GameElement() {
                     fold={fold}
                     phase={gameState.phase}
                 ></GameFieldElement>
-                {
-                    zoom && gameState.phase === Phase.Playing && <ZoomElement
-                        x={BLOCK_SIZE * 10}
-                        y={BLOCK_SIZE * 6}
-                        card={zoom}
-                        player={gameState.turn}
-                    ></ZoomElement>
-                }
                 <PhaseElement gameState={gameState}></PhaseElement>
                 <PointerElement
                     gameState={gameState}
@@ -90,6 +83,16 @@ export default function GameElement() {
                     fold={fold}
                     changeZoom={(z: Card | undefined) => { setZoom(z) }}
                 ></PointerElement>
+                <RuleElement x={BLOCK_SIZE * 1.5} y={BLOCK_SIZE * 4}
+                    fold={fold === Hit.none ? false : true}></RuleElement>
+                {
+                    zoom && gameState.phase === Phase.Playing && <ZoomElement
+                        x={BLOCK_SIZE * 10}
+                        y={BLOCK_SIZE * 6}
+                        card={zoom}
+                        player={gameState.turn}
+                    ></ZoomElement>
+                }
             </svg>
         </div>
     )

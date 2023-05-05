@@ -10,8 +10,10 @@ type Props = {
 }
 export default function ZoomElement(props: Props) {
     return (
-        <g>
-            <CardElement card={props.card} player={props.player} zoom={true} x={props.x} y={props.y} />
+        <g style={{ pointerEvents: "none" }}>
+            <CardElement card={props.card} player={props.player}
+                zoom={true} x={props.x} y={props.y}
+            />
         </g>
     )
 }

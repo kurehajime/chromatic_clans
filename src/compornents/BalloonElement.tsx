@@ -64,7 +64,7 @@ export default function BalloonElement(props: Props) {
     const cardText1 = CardParam.getDescriptions(card)[0];
     const cardText2 = CardParam.getDescriptions(card)[1];
     const colorStr = CardParam.getColorStrByColor(point.color)
-    const denial = (cards1[2] === Card.Green2 || cards2[2] === Card.Green2) && card !== Card.Green2
+    const denial = (cards1[2] === Card.Green2 || cards2[2] === Card.Green2) && ((card ?? 0) % 10 === 1)
     return (<g>
         <rect x={x} y={y} width={BLOCK_SIZE * 4} height={BLOCK_SIZE * 2} fill={colorStr}
             strokeWidth="1" rx={BLOCK_SIZE * 0.1} ry={BLOCK_SIZE * 0.1} />
