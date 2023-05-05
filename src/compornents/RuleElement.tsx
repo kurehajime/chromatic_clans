@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BLOCK_SIZE, CARD_SIZE } from "../utils/conf"
 
 type Props = {
@@ -23,23 +23,33 @@ export default function RuleElement(props: Props) {
     const toggle = () => {
         setShow(!show)
     }
+    useEffect(() => {
+        if (props.fold) {
+            setShow(false)
+        }
+    }, [props.fold])
+
 
     return (
         <g transform={show ? "" : rotate} style={{ pointerEvents: props.fold ? "none" : "auto" }} onClick={toggle} >
             <rect x={props.x - BLOCK_SIZE * 0.5} y={props.y - BLOCK_SIZE * 0.5}
                 width={BLOCK_SIZE * 13}
-                height={BLOCK_SIZE * 0.55 * rule.split("\n").length + BLOCK_SIZE * 1.8}
+                height={BLOCK_SIZE * 0.45 * rule.split("\n").length + BLOCK_SIZE * 1.8}
                 fill="#e6bfb2"
                 opacity={0.9}
                 stroke="#6a1917"
             />
-            <text x={props.x} y={props.y + BLOCK_SIZE * 0.3} fontSize={BLOCK_SIZE * 0.5} fill="#6a1917">{title}</text>
+            <text x={props.x} y={props.y + BLOCK_SIZE * 0.3} fontSize={BLOCK_SIZE * 0.5}
+                fill="#6a1917"
+                fontFamily="serif"
+            >{title}</text>
             {
                 rule.split("\n").map((line, i) => {
                     return (
-                        <text x={props.x} y={props.y + BLOCK_SIZE * 0.55 * (i + 1)} fontSize={BLOCK_SIZE * 0.5}
+                        <text x={props.x} y={props.y + BLOCK_SIZE * 0.55 * (i + 1)} fontSize={BLOCK_SIZE * 0.4}
                             fill="#6a1917"
                             key={i}
+                            fontFamily="serif"
                         >{line}</text>
                     )
                 })
