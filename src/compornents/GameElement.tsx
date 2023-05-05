@@ -68,7 +68,7 @@ export default function GameElement() {
 
 
     return (
-        <svg width={FIELD_SIZE.width} height={FIELD_SIZE.height} >
+        <svg width={FIELD_SIZE.width} height={FIELD_SIZE.height} className="game" >
             <GameFieldElement
                 fieldSet={gameState.fieldSet}
                 fold={fold}
