@@ -1,7 +1,7 @@
 import { Card } from "../utils/Card";
 import { Player } from "../utils/Player";
 import { BLOCK_SIZE, CARD_SIZE } from "../utils/conf";
-import reverse from "../assets/reverse.png"
+import reverse from "../assets/reverse.webp"
 import { CardParam } from "../utils/CardParam";
 import "./CardElement.css"
 type Props = {

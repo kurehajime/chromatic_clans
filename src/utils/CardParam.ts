@@ -1,15 +1,15 @@
 import { Card } from "./Card";
 
-import princess_red from "../assets/princess_red.png"
-import princess_blue from "../assets/princess_blue.png"
-import princess_green from "../assets/princess_green.png"
-import swordman_red from "../assets/swordman_red.png"
-import swordman_blue from "../assets/swordman_blue.png"
-import swordman_green from "../assets/swordman_green.png"
-import dragon_red from "../assets/dragon_red.png"
-import dragon_blue from "../assets/dragon_blue.png"
-import dragon_green from "../assets/dragon_green.png"
-import giant_white from "../assets/giant_white.png"
+import princess_red from "../assets/princess_red.webp"
+import princess_blue from "../assets/princess_blue.webp"
+import princess_green from "../assets/princess_green.webp"
+import swordman_red from "../assets/swordman_red.webp"
+import swordman_blue from "../assets/swordman_blue.webp"
+import swordman_green from "../assets/swordman_green.webp"
+import dragon_red from "../assets/dragon_red.webp"
+import dragon_blue from "../assets/dragon_blue.webp"
+import dragon_green from "../assets/dragon_green.webp"
+import giant_white from "../assets/giant_white.webp"
 import { Color } from "./Color";
 
 export class CardParam {
