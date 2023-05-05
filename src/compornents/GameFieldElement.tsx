@@ -2,7 +2,7 @@ import { FieldSet } from "../utils/FieldSet";
 import { Hit } from "../utils/Hit";
 import { Phase } from "../utils/Phase";
 import { Player } from "../utils/Player";
-import { BLOCK_SIZE, FIELD_SIZE, XY } from "../utils/conf";
+import { FIELD_SIZE, XY } from "../utils/conf";
 import CardElement from "./CardElement";
 type Props = {
     fieldSet: FieldSet
