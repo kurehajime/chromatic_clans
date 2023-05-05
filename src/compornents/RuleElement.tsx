@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { BLOCK_SIZE } from "../utils/conf"
+import "./RuleElement.css"
 
 type Props = {
     x: number
@@ -31,13 +32,14 @@ export default function RuleElement(props: Props) {
 
 
     return (
-        <g transform={show ? "" : rotate} style={{ pointerEvents: props.fold ? "none" : "auto" }} onClick={toggle} >
+        <g transform={show ? "" : rotate} style={{ pointerEvents: props.fold ? "none" : "auto" }} onClick={toggle}     >
             <rect x={props.x - BLOCK_SIZE * 0.5} y={props.y - BLOCK_SIZE * 0.5}
                 width={BLOCK_SIZE * 13}
                 height={BLOCK_SIZE * 0.45 * rule.split("\n").length + BLOCK_SIZE * 1.8}
                 fill="#e6bfb2"
                 opacity={0.9}
                 stroke="#6a1917"
+                className={show ? "rule_open" : "rule_close"}
             />
             <text x={props.x} y={props.y + BLOCK_SIZE * 0.3} fontSize={BLOCK_SIZE * 0.5}
                 fill="#6a1917"
@@ -59,5 +61,5 @@ export default function RuleElement(props: Props) {
                 height={BLOCK_SIZE * 0.55 * rule.split("\n").length + BLOCK_SIZE * 1.8}
                 fill="transparent" />
 
-        </g>)
+        </g >)
 }

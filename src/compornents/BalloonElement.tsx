@@ -5,6 +5,7 @@ import { GameState } from "../utils/GameState"
 import { Line } from "../utils/Line"
 import { Player } from "../utils/Player"
 import { BLOCK_SIZE, XY } from "../utils/conf"
+import "./BalloonElement.css"
 
 type Props = {
     gameState: GameState
@@ -65,7 +66,7 @@ export default function BalloonElement(props: Props) {
     const cardText2 = CardParam.getDescriptions(card)[1];
     const colorStr = CardParam.getColorStrByColor(point.color)
     const denial = (cards1[2] === Card.Green2 || cards2[2] === Card.Green2) && ((card ?? 0) % 10 === 1)
-    return (<g>
+    return (<g className="balloon">
         <rect x={x} y={y} width={BLOCK_SIZE * 4} height={BLOCK_SIZE * 2} fill={colorStr}
             strokeWidth="1" rx={BLOCK_SIZE * 0.1} ry={BLOCK_SIZE * 0.1} />
         <polygon points={`${x - 20},${y + BLOCK_SIZE * 1} ${x + 1},${y + BLOCK_SIZE * 0.7} ${x + 1},${y + BLOCK_SIZE * 1.3}`} fill={colorStr} />

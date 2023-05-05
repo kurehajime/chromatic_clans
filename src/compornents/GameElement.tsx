@@ -74,7 +74,6 @@ export default function GameElement() {
                 fold={fold}
                 phase={gameState.phase}
             ></GameFieldElement>
-            <PhaseElement gameState={gameState}></PhaseElement>
             <PointerElement
                 gameState={gameState}
                 select={select}
@@ -92,6 +91,7 @@ export default function GameElement() {
                     player={gameState.turn}
                 ></ZoomElement>
             }
+            <PhaseElement gameState={gameState}></PhaseElement>
         </svg>
     )
 }

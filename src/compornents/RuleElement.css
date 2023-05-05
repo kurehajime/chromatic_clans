@@ -1,0 +1,7 @@
+.rule_open {
+    filter: drop-shadow(20px 20px 20px #000);
+}
+
+.rule_close {
+    filter: drop-shadow(2px 2px 2px #000);
+}

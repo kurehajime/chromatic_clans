@@ -6,6 +6,7 @@ import { Player } from "../utils/Player"
 import { BLOCK_SIZE, FIELD_SIZE, XY } from "../utils/conf"
 import BalloonElement from "./BalloonElement"
 import CrownElement from "./CrownElement"
+import "./PhaseElement.css"
 
 type Props = {
     gameState: GameState
@@ -80,14 +81,7 @@ export default function PhaseElement(props: Props) {
         }
     }
 
-    return (<g>
-        text ?? <text x={x} y={y}
-            fontSize={fontSize}
-            textAnchor="middle"
-            dominantBaseline="central"
-            opacity={0.9}
-            fontWeight={900}
-            fill="white">{text}</text>
+    return (<g style={{ pointerEvents: "none" }}>
         {
             props.gameState.phase === Phase.OpenLeft &&
             <BalloonElement
@@ -196,5 +190,13 @@ export default function PhaseElement(props: Props) {
                 ></CrownElement>
             })
         }
+        text ?? <text x={x} y={y}
+            fontSize={fontSize}
+            textAnchor="middle"
+            dominantBaseline="central"
+            opacity={0.9}
+            fontWeight={900}
+            className="phase"
+            fill="white">{text}</text>
     </g>)
 }

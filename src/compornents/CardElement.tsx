@@ -3,6 +3,7 @@ import { Player } from "../utils/Player";
 import { BLOCK_SIZE, CARD_SIZE } from "../utils/conf";
 import reverse from "../assets/reverse.png"
 import { CardParam } from "../utils/CardParam";
+import "./CardElement.css"
 type Props = {
     x: number
     y: number
@@ -35,7 +36,8 @@ export default function CardElement(props: Props) {
     const showFrame = props.card !== undefined || stack === 0;
 
     return (
-        <g transform={rotate} opacity={props.zoom ? 0.8 : 1} >
+        <g transform={rotate} opacity={props.zoom ? 0.8 : 1}
+            className={props.zoom ? "buru" : "card"} >
             {
                 showFrame && <rect x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     fill={colorStr}
