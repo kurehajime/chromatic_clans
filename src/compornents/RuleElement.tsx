@@ -30,13 +30,16 @@ ${t("rule_description_7")}`
             setShow(false)
         }
     }, [props.fold])
-
+    const x = props.x - BLOCK_SIZE * 0.5
+    const y = props.y - BLOCK_SIZE * 0.5
+    const w = BLOCK_SIZE * 13
+    const h = BLOCK_SIZE * 0.45 * rule.split("\n").length + BLOCK_SIZE * 1.9
 
     return (
         <g transform={show ? "" : rotate} style={{ pointerEvents: props.fold ? "none" : "auto" }} onClick={toggle}     >
-            <rect x={props.x - BLOCK_SIZE * 0.5} y={props.y - BLOCK_SIZE * 0.5}
-                width={BLOCK_SIZE * 13}
-                height={BLOCK_SIZE * 0.45 * rule.split("\n").length + BLOCK_SIZE * 1.8}
+            <rect x={x} y={y}
+                width={w}
+                height={h}
                 fill="#e6bfb2"
                 opacity={0.9}
                 stroke="#6a1917"
@@ -61,6 +64,15 @@ ${t("rule_description_7")}`
                 width={BLOCK_SIZE * 13}
                 height={BLOCK_SIZE * 0.55 * rule.split("\n").length + BLOCK_SIZE * 1.8}
                 fill="transparent" />
-
+            <text
+                x={x + w - BLOCK_SIZE * 0.2}
+                y={y + h - BLOCK_SIZE * 0.2}
+                fontSize={BLOCK_SIZE * 0.3}
+                textAnchor="end"
+                textDecoration={"underline"}
+                fontFamily="Oswald,serif"
+                fill="#6a1917"
+                onClick={() => { window.open('https://github.com/kurehajime/chromatic_clans'); }}
+            >Created by kurehajime</text>
         </g >)
 }
