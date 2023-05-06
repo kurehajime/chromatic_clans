@@ -125,4 +125,30 @@ export class CardParam {
         }
         return colorStr;
     }
+
+    public static getCardName(card: Card | undefined): string {
+        switch (card) {
+            case Card.Red1:
+                return t("red_name1");
+            case Card.Red2:
+                return t("red_name2");
+            case Card.Red3:
+                return t("red_name3");
+            case Card.Blue1:
+                return t("blue_name1");
+            case Card.Blue2:
+                return t("blue_name2");
+            case Card.Blue3:
+                return t("blue_name3");
+            case Card.Green1:
+                return t("green_name1");
+            case Card.Green2:
+                return t("green_name2");
+            case Card.Green3:
+                return t("green_name3");
+            case Card.White4:
+                return t("white_name4");
+        }
+        return "";
+    }
 }
