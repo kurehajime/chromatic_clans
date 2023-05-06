@@ -2,7 +2,7 @@ import { Card } from "./Card";
 
 import witch_red from "../assets/witch_red.webp"
 import mermaid_blue from "../assets/mermaid_blue.webp"
-import princess_green from "../assets/princess_green.webp"
+import priestess_green from "../assets/priestess_green.webp"
 import swordman_red from "../assets/swordman_red.webp"
 import thief_blue from "../assets/thief_blue.webp"
 import hunter_green from "../assets/hunter_green.webp"
@@ -67,7 +67,7 @@ export class CardParam {
                 image = kraken_blue;
                 break;
             case Card.Green1:
-                image = princess_green;
+                image = priestess_green;
                 break;
             case Card.Green2:
                 image = hunter_green;
