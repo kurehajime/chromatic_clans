@@ -61,11 +61,22 @@ export default function CardElement(props: Props) {
                 props.card && <image href={image} x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.5} width={ZOOM_BLOCK_SIZE * 1.8} height={ZOOM_BLOCK_SIZE * 1.8} />
             }
             {
-                <text x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.4}
+                props.card && <text x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.4}
                     fontSize={ZOOM_BLOCK_SIZE * 0.5}
                     fontWeight={600}
                     fill="white"
                 >{number > 0 ? number : ""}</text>
+            }
+            {
+                props.card && <text
+                    x={x + CARD_WIDTH * 0.95}
+                    y={y + ZOOM_BLOCK_SIZE * 0.38}
+                    fontSize={ZOOM_BLOCK_SIZE * 0.2}
+                    fontWeight={400}
+                    fill="white"
+                    textAnchor="end"
+                    dominantBaseline="central"
+                >{CardParam.getCardName(props.card)}</text>
             }
             <text x={x + ZOOM_BLOCK_SIZE * 0.15} y={y + ZOOM_BLOCK_SIZE * 2.4} fontSize={ZOOM_BLOCK_SIZE * 0.17} fill="white" fontFamily="Arial, Helvetica">{cardText1}</text>
             <text x={x + ZOOM_BLOCK_SIZE * 0.15} y={y + ZOOM_BLOCK_SIZE * 2.6} fontSize={ZOOM_BLOCK_SIZE * 0.17} fill="white" fontFamily="Arial, Helvetica">{cardText2}</text>
