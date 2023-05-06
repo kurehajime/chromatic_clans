@@ -6,6 +6,10 @@
     filter: drop-shadow(2px 2px 2px #000);
 }
 
+.card_title {
+    filter: drop-shadow(1px 1px 7px #000);
+}
+
 @keyframes buru {
     0% {
         transform: translate(0px, 0px) rotateZ(0deg)
