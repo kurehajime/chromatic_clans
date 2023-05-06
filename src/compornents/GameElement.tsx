@@ -146,6 +146,9 @@ export default function GameElement() {
                 }}
                 level={level}
                 wins={winsShow}
+                changeLanguage={() => {
+                    setGameState(gameState.Clone())
+                }}
             ></LevelElement>
             <PhaseElement gameState={gameState}></PhaseElement>
         </svg>
