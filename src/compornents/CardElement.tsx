@@ -84,6 +84,13 @@ export default function CardElement(props: Props) {
             <text x={x + ZOOM_BLOCK_SIZE * 0.15} y={y + ZOOM_BLOCK_SIZE * 2.4} fontSize={ZOOM_BLOCK_SIZE * 0.17} fill="white" fontFamily="Arial, Helvetica">{cardText1}</text>
             <text x={x + ZOOM_BLOCK_SIZE * 0.15} y={y + ZOOM_BLOCK_SIZE * 2.6} fontSize={ZOOM_BLOCK_SIZE * 0.17} fill="white" fontFamily="Arial, Helvetica">{cardText2}</text>
             {
+                props.hidden && !props.halfOpen && <rect x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
+                    fill="black"
+                    stroke="black"
+                    rx={ZOOM_BLOCK_SIZE * 0.1} ry={ZOOM_BLOCK_SIZE * 0.1}
+                />
+            }
+            {
                 props.hidden && <image href={reverse} x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     clipPath={`inset(0px 0px 0px 0px round 3px)`}
                     opacity={props.halfOpen ? 0.5 : 1}
@@ -97,7 +104,6 @@ export default function CardElement(props: Props) {
                     rx="3" ry="3"
                 ></rect>
             }
-
         </g>
     )
 }
