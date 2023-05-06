@@ -78,6 +78,7 @@ export default function CardElement(props: Props) {
                     textAnchor="end"
                     dominantBaseline="central"
                     className="card_title"
+                    fontFamily="Oswald,serif"
                 >{CardParam.getCardName(props.card)}</text>
             }
             <text x={x + ZOOM_BLOCK_SIZE * 0.15} y={y + ZOOM_BLOCK_SIZE * 2.4} fontSize={ZOOM_BLOCK_SIZE * 0.17} fill="white" fontFamily="Arial, Helvetica">{cardText1}</text>
