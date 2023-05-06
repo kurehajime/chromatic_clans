@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { viteSingleFile } from "vite-plugin-singlefile"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,6 +7,5 @@ export default defineConfig({
   build: {
     outDir: './docs'
   },
-  assetsInclude: ['**/*.webp'],
-  plugins: [react(), viteSingleFile()],
+  plugins: [react()],
 })

@@ -87,6 +87,7 @@ export default function CardElement(props: Props) {
                 props.hidden && <image href={reverse} x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
                     clipPath={`inset(0px 0px 0px 0px round 3px)`}
                     opacity={props.halfOpen ? 0.5 : 1}
+                    fill="black"
                 />
             }
             {
