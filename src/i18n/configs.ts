@@ -24,7 +24,7 @@ if (lang.includes("de")) {
 if (lang.includes("ja")) {
     location = "ja"
 }
-
+// location = 'en'
 i18n
     .use(initReactI18next)
     .init({

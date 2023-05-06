@@ -1,15 +1,15 @@
 import { Card } from "./Card";
 
-import princess_red from "../assets/princess_red.webp"
-import princess_blue from "../assets/princess_blue.webp"
+import witch_red from "../assets/witch_red.webp"
+import mermaid_blue from "../assets/mermaid_blue.webp"
 import princess_green from "../assets/princess_green.webp"
 import swordman_red from "../assets/swordman_red.webp"
-import swordman_blue from "../assets/swordman_blue.webp"
-import swordman_green from "../assets/swordman_green.webp"
+import thief_blue from "../assets/thief_blue.webp"
+import hunter_green from "../assets/hunter_green.webp"
 import dragon_red from "../assets/dragon_red.webp"
-import dragon_blue from "../assets/dragon_blue.webp"
-import dragon_green from "../assets/dragon_green.webp"
-import giant_white from "../assets/giant_white.webp"
+import kraken_blue from "../assets/kraken_blue.webp"
+import ape_green from "../assets/ape_green.webp"
+import robo_white from "../assets/robo_white.webp"
 import { Color } from "./Color";
 import { t } from "i18next";
 
@@ -49,7 +49,7 @@ export class CardParam {
         let image = "";
         switch (card) {
             case Card.Red1:
-                image = princess_red;
+                image = witch_red;
                 break;
             case Card.Red2:
                 image = swordman_red;
@@ -58,25 +58,25 @@ export class CardParam {
                 image = dragon_red;
                 break;
             case Card.Blue1:
-                image = princess_blue;
+                image = mermaid_blue;
                 break;
             case Card.Blue2:
-                image = swordman_blue;
+                image = thief_blue;
                 break;
             case Card.Blue3:
-                image = dragon_blue;
+                image = kraken_blue;
                 break;
             case Card.Green1:
                 image = princess_green;
                 break;
             case Card.Green2:
-                image = swordman_green;
+                image = hunter_green;
                 break;
             case Card.Green3:
-                image = dragon_green;
+                image = ape_green;
                 break;
             case Card.White4:
-                image = giant_white;
+                image = robo_white;
                 break;
         }
         return image;
