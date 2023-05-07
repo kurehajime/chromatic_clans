@@ -84,7 +84,7 @@ ${t("rule_description_7")}`
                     textDecoration={"underline"}
                     fontFamily="Oswald,serif"
                     fill="#6a1917"
-                    onClick={() => { window.open('https://github.com/kurehajime/chromatic_clans'); }}
+                    onClick={() => { window.open('https://twitter.com/kurehajime'); }}
                 >Created by kurehajime</text>
             </g>
         </g >)
