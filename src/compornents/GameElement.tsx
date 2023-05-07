@@ -32,6 +32,7 @@ export default function GameElement() {
         tryInt(level1),
         tryInt(level2)])
     const [winsShow, setWinsShow] = useState<number[]>(wins)
+    const [ruleYet, setRuleYet] = useState(true);
 
     function tryInt(s: unknown): number {
         if (s === undefined) {
@@ -87,6 +88,7 @@ export default function GameElement() {
             if (!gameState.canSummon(from, to)) {
                 return false
             }
+            setRuleYet(false)
             setGameState(gameState.summon(from, to))
             return true
         }
@@ -130,6 +132,7 @@ export default function GameElement() {
                 changeZoom={(z: Card | undefined) => { setZoom(z) }}
             ></PointerElement>
             <RuleElement x={BLOCK_SIZE * 1.5} y={BLOCK_SIZE * 4}
+                setRuleYet={(b: boolean) => { setRuleYet(b) }} ruleYet={ruleYet}
                 fold={fold === Hit.none ? false : true}></RuleElement>
             {
                 zoom && gameState.phase === Phase.Playing && <ZoomElement

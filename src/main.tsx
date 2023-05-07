@@ -15,6 +15,7 @@ import kraken_blue from "./assets/kraken_blue.webp"
 import ape_green from "./assets/ape_green.webp"
 import robo_white from "./assets/robo_white.webp"
 import reverse from "./assets/reverse.webp"
+import wall from "./assets/wall.webp"
 
 const images = [
   witch_red,
@@ -28,6 +29,7 @@ const images = [
   ape_green,
   robo_white,
   reverse,
+  wall,
 ]
 images.map((image) => {
   const img = new Image()
