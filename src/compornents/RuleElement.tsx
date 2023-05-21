@@ -21,9 +21,6 @@ export default function RuleElement(props: Props) {
         t("rule_description_2"),
         t("rule_description_3"),
         t("rule_description_4"),
-        t("rule_description_5"),
-        t("rule_description_6"),
-        t("rule_description_7")
     ]
     const rule = rules[page % rules.length]
     rotate = `rotate(-30,${BLOCK_SIZE * 10},${-BLOCK_SIZE * 15})`
@@ -36,7 +33,7 @@ export default function RuleElement(props: Props) {
     const x = props.x - BLOCK_SIZE * 0.5
     const y = props.y - BLOCK_SIZE * 0.5
     const w = BLOCK_SIZE * 13
-    const h = BLOCK_SIZE * 0.45 * (rule.split("\n").length + 1) + BLOCK_SIZE * 1.9
+    const h = BLOCK_SIZE * 0.45 * (10) + BLOCK_SIZE * 1.9
 
     return (
         <g>
