@@ -22,7 +22,8 @@ ${t("rule_description_3")}
 ${t("rule_description_4")}
 ${t("rule_description_5")}
 ${t("rule_description_6")}
-${t("rule_description_7")}`
+${t("rule_description_7")}
+${t("rule_description_8")}`
     rotate = `rotate(-30,${BLOCK_SIZE * 10},${-BLOCK_SIZE * 15})`
 
     const toggle = () => {
@@ -63,7 +64,7 @@ ${t("rule_description_7")}`
                 {
                     rule.split("\n").map((line, i) => {
                         return (
-                            <text x={props.x} y={props.y + BLOCK_SIZE * 0.55 * (i + 1)} fontSize={BLOCK_SIZE * 0.4}
+                            <text x={props.x} y={props.y + BLOCK_SIZE * 0.55 * (i + 1)} fontSize={BLOCK_SIZE * 0.38}
                                 fill="#6a1917"
                                 key={i}
                                 fontFamily="Oswald,serif"
