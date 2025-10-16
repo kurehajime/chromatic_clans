@@ -9,6 +9,7 @@ export const Card = {
     Green2: 32,
     Green3: 33,
     White4: 44,
+    Rainbow1: 51,
 } as const;
 
 export type Card = typeof Card[keyof typeof Card];

@@ -26,9 +26,12 @@ export class Calc {
         const player2_blue: number[] = [];
         const player2_green: number[] = [];
         const player2_white: number[] = [];
-        const red1 = (line1[2] == Card.Red1 || line2[2] == Card.Red1) && (line1[2] != Card.Green2 && line2[2] != Card.Green2);
-        const blue1 = (line1[2] == Card.Blue1 || line2[2] == Card.Blue1) && (line1[2] != Card.Green2 && line2[2] != Card.Green2);
-        const green1 = (line1[2] == Card.Green1 || line2[2] == Card.Green1) && (line1[2] != Card.Green2 && line2[2] != Card.Green2);
+        const effectCard1 = Calc.getEffectTriggerCard(line1);
+        const effectCard2 = Calc.getEffectTriggerCard(line2);
+        const denyOneEffects = effectCard1 === Card.Green2 || effectCard2 === Card.Green2;
+        const red1 = (effectCard1 === Card.Red1 || effectCard2 === Card.Red1) && !denyOneEffects;
+        const blue1 = (effectCard1 === Card.Blue1 || effectCard2 === Card.Blue1) && !denyOneEffects;
+        const green1 = (effectCard1 === Card.Green1 || effectCard2 === Card.Green1) && !denyOneEffects;
 
         for (const c of line1) {
             const color = c / 10 | 0;
@@ -44,6 +47,12 @@ export class Calc {
                     player1_green.push(red1 ? 1 : score);
                     break;
                 case 4:
+                    player1_white.push(score);
+                    break;
+                case 5:
+                    player1_red.push(blue1 ? 1 : score);
+                    player1_blue.push(green1 ? 1 : score);
+                    player1_green.push(red1 ? 1 : score);
                     player1_white.push(score);
                     break;
             }
@@ -62,6 +71,12 @@ export class Calc {
                     player2_green.push(red1 ? 1 : score);
                     break;
                 case 4:
+                    player2_white.push(score);
+                    break;
+                case 5:
+                    player2_red.push(blue1 ? 1 : score);
+                    player2_blue.push(green1 ? 1 : score);
+                    player2_green.push(red1 ? 1 : score);
                     player2_white.push(score);
                     break;
             }
@@ -104,18 +119,41 @@ export class Calc {
 
         const vec = player1.point - player2.point;
         let point = vec === 0 ? 0 : vec > 0 ? 1 : -1;
-        if (line1[2] == Card.Red2) {
+        const effectCard1 = Calc.getEffectTriggerCard(line1);
+        const effectCard2 = Calc.getEffectTriggerCard(line2);
+        if (effectCard1 === Card.Red2) {
             point *= 2;
         }
-        if (line2[2] == Card.Red2) {
+        if (effectCard2 === Card.Red2) {
             point *= 2;
         }
-        if (line1[2] == Card.Blue2) {
+        if (effectCard1 === Card.Blue2) {
             point *= -1;
         }
-        if (line2[2] == Card.Blue2) {
+        if (effectCard2 === Card.Blue2) {
             point *= -1;
         }
         return point;
+    }
+
+    private static getEffectTriggerCard(line: Card[]): Card | undefined {
+        if (line.length < 3) {
+            return undefined;
+        }
+        let index = line.length - 1;
+        let card = line[index];
+        if (card !== Card.Rainbow1) {
+            return card;
+        }
+        index -= 1;
+        while (index >= 0) {
+            card = line[index];
+            if (card === Card.Rainbow1) {
+                index -= 1;
+                continue;
+            }
+            return card;
+        }
+        return undefined;
     }
 }

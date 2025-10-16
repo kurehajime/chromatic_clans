@@ -58,7 +58,7 @@ export default function CardElement(props: Props) {
                 ></rect>
             }
             {
-                props.card && <image href={image} x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.5} width={ZOOM_BLOCK_SIZE * 1.8} height={ZOOM_BLOCK_SIZE * 1.8} />
+                props.card && image && <image href={image} x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.5} width={ZOOM_BLOCK_SIZE * 1.8} height={ZOOM_BLOCK_SIZE * 1.8} />
             }
             {
                 props.card && <text x={x + ZOOM_BLOCK_SIZE * 0.1} y={y + ZOOM_BLOCK_SIZE * 0.4}

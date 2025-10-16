@@ -42,11 +42,15 @@ export class CardParam {
                 cardText1 = t("green_2a");
                 cardText2 = t("green_2b");
                 break;
+            case Card.Rainbow1:
+                cardText1 = t("rainbow_1a");
+                cardText2 = t("rainbow_1b");
+                break;
         }
         return [cardText1, cardText2]
     }
-    public static getCardImage(card: Card | undefined): string {
-        let image = "";
+    public static getCardImage(card: Card | undefined): string | undefined {
+        let image: string | undefined = undefined;
         switch (card) {
             case Card.Red1:
                 image = witch_red;
@@ -77,6 +81,9 @@ export class CardParam {
                 break;
             case Card.White4:
                 image = robo_white;
+                break;
+            case Card.Rainbow1:
+                image = undefined;
                 break;
         }
         return image;
@@ -122,6 +129,9 @@ export class CardParam {
             case Card.White4:
                 colorStr = "#999999";
                 break;
+            case Card.Rainbow1:
+                colorStr = "#ff8c42";
+                break;
         }
         return colorStr;
     }
@@ -148,6 +158,8 @@ export class CardParam {
                 return t("green_name3");
             case Card.White4:
                 return t("white_name4");
+            case Card.Rainbow1:
+                return t("rainbow_name1");
         }
         return "";
     }
