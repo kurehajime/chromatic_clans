@@ -10,6 +10,7 @@ import dragon_red from "../assets/dragon_red.webp"
 import kraken_blue from "../assets/kraken_blue.webp"
 import ape_green from "../assets/ape_green.webp"
 import robo_white from "../assets/robo_white.webp"
+import slyme_rainbow from "../assets/slyme_rainbow.webp"
 import { Color } from "./Color";
 import { t } from "i18next";
 
@@ -83,7 +84,7 @@ export class CardParam {
                 image = robo_white;
                 break;
             case Card.Rainbow1:
-                image = undefined;
+                image = slyme_rainbow;
                 break;
         }
         return image;

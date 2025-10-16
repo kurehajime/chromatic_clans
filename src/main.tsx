@@ -16,6 +16,7 @@ import ape_green from "./assets/ape_green.webp"
 import robo_white from "./assets/robo_white.webp"
 import reverse from "./assets/reverse.webp"
 import wall from "./assets/wall.webp"
+import slyme_rainbow from "./assets/slyme_rainbow.webp"
 
 const images = [
   witch_red,
@@ -28,6 +29,7 @@ const images = [
   kraken_blue,
   ape_green,
   robo_white,
+  slyme_rainbow,
   reverse,
   wall,
 ]

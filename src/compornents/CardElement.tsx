@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Card } from "../utils/Card";
 import { Player } from "../utils/Player";
 import { BLOCK_SIZE, CARD_SIZE } from "../utils/conf";
@@ -29,6 +30,10 @@ export default function CardElement(props: Props) {
     const cardText1 = CardParam.getDescriptions(props.card)[0];
     const cardText2 = CardParam.getDescriptions(props.card)[1];
     const image = CardParam.getCardImage(props.card);
+    const gradientBaseId = useId();
+    const gradientId = `rainbow-gradient-${gradientBaseId.replace(/:/g, "-")}`;
+    const isRainbow = props.card === Card.Rainbow1;
+    const frameFill = isRainbow ? `url(#${gradientId})` : colorStr;
     let rotate = ""
     if (props.player === Player.Player2) {
         rotate = `rotate(180,${rotateX},${rotateY})`
@@ -39,8 +44,19 @@ export default function CardElement(props: Props) {
         <g transform={rotate} opacity={props.zoom ? 0.8 : 1}
             className={props.zoom ? "buru" : "card"} >
             {
+                isRainbow && <defs>
+                    <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ff5f6d" />
+                        <stop offset="25%" stopColor="#ffc371" />
+                        <stop offset="50%" stopColor="#47c9e5" />
+                        <stop offset="75%" stopColor="#845ec2" />
+                        <stop offset="100%" stopColor="#ff5f6d" />
+                    </linearGradient>
+                </defs>
+            }
+            {
                 showFrame && <rect x={x} y={y} width={CARD_WIDTH} height={CARD_HEIGHT}
-                    fill={colorStr}
+                    fill={frameFill}
                     stroke="white"
                     strokeOpacity="0.1"
                     rx={ZOOM_BLOCK_SIZE * 0.1} ry={ZOOM_BLOCK_SIZE * 0.1}
