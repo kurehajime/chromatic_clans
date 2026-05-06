@@ -28,7 +28,7 @@
     "react-cookie": "^8.1.2",
     "typescript": "^6.0.2",
     "vite": "^8.0.10",
-    "vite-plugin-singlefile": "^0.13.5",
+    "vite-plugin-singlefile": "^2.3.3",
     "vitest": "^4.1.5"
   },
   "overrides": {
