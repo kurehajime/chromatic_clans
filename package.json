@@ -11,7 +11,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "i18next": "^26.0.10",
+    "i18next": "^26.1.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-i18next": "^17.0.7"
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.59.2",
+    "@typescript-eslint/eslint-plugin": "^8.59.3",
     "@typescript-eslint/parser": "^8.59.2",
     "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^10.3.0",
@@ -27,9 +27,9 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "react-cookie": "^8.1.2",
     "typescript": "^6.0.3",
-    "vite": "^8.0.11",
+    "vite": "^8.0.12",
     "vite-plugin-singlefile": "^2.3.3",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.6"
   },
   "overrides": {
     "postcss": "8.5.12"
