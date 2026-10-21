@@ -27,11 +27,11 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "react-cookie": "^8.1.2",
     "typescript": "^6.0.3",
-    "vite": "^8.3.5",
+    "vite": "8.3.4",
     "vite-plugin-singlefile": "^2.3.3",
     "vitest": "^5.0.5"
   },
   "overrides": {
-    "postcss": "8.5.12"
+    "postcss": "8.5.25"
   }
 }
